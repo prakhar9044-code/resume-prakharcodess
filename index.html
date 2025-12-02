@@ -13,24 +13,70 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
   <style>
+    /* ===============================
+       THEME VARIABLES
+       =============================== */
+
+    /* Dark theme (default) */
     :root{
       --bg:#060916;
-      --card:#0f1724;
+      --bg-gradient: radial-gradient(circle at top, #151b30 0, #050711 55%, #020309 100%);
+      --surface:#0f1724;
+      --surface-soft:#111827;
+
+      --text:#e6eef8;
+      --text-strong:#ffffff;
       --muted:#9aa6bd;
-      --accent1:#7c5cff; /* violet */
-      --accent2:#00d4ff; /* cyan */
+
+      --border:rgba(255,255,255,0.08);
+
+      --accent1:#7c5cff;
+      --accent2:#00d4ff;
       --accent-soft:#4ad0c6;
-      --glass: rgba(255,255,255,0.04);
-      --glass-2: rgba(255,255,255,0.02);
+
+      --glass: rgba(255,255,255,0.05);
+      --glass-2: rgba(255,255,255,0.03);
+
+      --shadow-soft:0 18px 40px rgba(2,6,23,0.8);
+      --shadow-strong:0 24px 60px rgba(2,6,23,0.9);
+      --shadow-fab:0 18px 45px rgba(15,23,42,0.9);
     }
+
+    /* Light theme (when <html class="light">) */
+    :root.light{
+      --bg:#f5f7ff;
+      --bg-gradient: radial-gradient(circle at top, #ffffff 0, #e2e8ff 55%, #e0f6ff 100%);
+      --surface:#ffffff;
+      --surface-soft:#f3f5ff;
+
+      --text:#141726;
+      --text-strong:#000000;
+      --muted:#5e657d;
+
+      --border:rgba(0,0,0,0.08);
+
+      --accent1:#5d79ff;
+      --accent2:#00b4d4;
+      --accent-soft:#2677a1;
+
+      --glass: rgba(255,255,255,0.9);
+      --glass-2: rgba(255,255,255,0.8);
+
+      --shadow-soft:0 10px 30px rgba(0,0,0,0.15);
+      --shadow-strong:0 16px 40px rgba(0,0,0,0.18);
+      --shadow-fab:0 12px 28px rgba(15,23,42,0.25);
+    }
+
     *{box-sizing:border-box}
+
     html,body{
       height:100%;
       font-family:'Inter',system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background:radial-gradient(circle at top, #151b30 0, #050711 55%, #020309 100%);
-      color:#e6eef8;
+      background:var(--bg-gradient);
+      color:var(--text);
       margin:0;
     }
+
     a{color:inherit}
 
     /* subtle moving background glows */
@@ -51,15 +97,32 @@
       to{transform:translate3d(-25px,18px,0);}
     }
 
-    /* Layout */
+    /* Light theme – softer background glows */
+    html.light body::before{
+      opacity:0.4;
+      filter:blur(55px);
+      background:
+        radial-gradient(circle at 40% 15%, rgba(93,121,255,0.35), transparent 55%),
+        radial-gradient(circle at 80% 90%, rgba(0,180,212,0.28), transparent 55%);
+    }
+
+    /* ===============================
+       LAYOUT / HEADER
+       =============================== */
+
     header{
       position:fixed;
       top:0;left:0;right:0;
       backdrop-filter:blur(10px);
-      background:linear-gradient(180deg, rgba(5,8,18,0.85), rgba(5,8,18,0.35));
+      background:linear-gradient(180deg, rgba(5,8,18,0.9), rgba(5,8,18,0.35));
       border-bottom:1px solid rgba(255,255,255,0.04);
       z-index:50;
     }
+    html.light header{
+      background:linear-gradient(180deg, rgba(245,247,255,0.94), rgba(245,247,255,0.8));
+      border-bottom:1px solid var(--border);
+    }
+
     .container{max-width:1100px;margin:0 auto;padding:6rem 1rem 4rem}
     header .container{padding:3rem 1rem 1.6rem;}
 
@@ -68,6 +131,7 @@
       display:flex;gap:.6rem;align-items:center;
       font-weight:700;
       letter-spacing:0.03em;
+      color:var(--text-strong);
     }
     .logo .dot{
       width:10px;height:10px;border-radius:50%;
@@ -89,7 +153,7 @@
       transition:background .2s ease,color .2s ease,transform .2s ease;
     }
     .nav-links a:hover{
-      color:#fff;background:var(--glass);
+      color:var(--text-strong);background:var(--glass);
       transform:translateY(-2px);
     }
 
@@ -98,18 +162,24 @@
       gap:2rem;align-items:center;padding-top:2rem;
     }
 
-    /* Card + hover float */
+    /* ===============================
+       CARDS / SURFACES
+       =============================== */
     .card{
-      background:linear-gradient(180deg,var(--card), rgba(15,23,36,0.7));
+      background:var(--surface);
       padding:1.6rem;border-radius:16px;
-      box-shadow:0 18px 40px rgba(2,6,23,0.8);
-      border:1px solid rgba(255,255,255,0.05);
-      transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+      box-shadow:var(--shadow-soft);
+      border:1px solid var(--border);
+      transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background .3s ease;
+      color:var(--text);
     }
     .card:hover{
       transform:translateY(-6px);
-      box-shadow:0 24px 60px rgba(2,6,23,0.9);
+      box-shadow:var(--shadow-strong);
       border-color:rgba(148,163,255,0.35);
+    }
+    html.light .card:hover{
+      border-color:rgba(93,121,255,0.45);
     }
 
     /* Profile avatar */
@@ -120,12 +190,15 @@
       box-shadow:0 8px 22px rgba(15,23,42,0.75);
       flex-shrink:0;
     }
+    html.light .avatar{
+      box-shadow:0 8px 18px rgba(0,0,0,0.18);
+    }
     .avatar img{
       width:100%;height:100%;object-fit:cover;
       display:block;
     }
 
-    .intro h1{margin:0 0 .2rem;font-size:28px;letter-spacing:-0.3px}
+    .intro h1{margin:0 0 .2rem;font-size:28px;letter-spacing:-0.3px;color:var(--text-strong);}
     .intro p{margin:0;color:var(--muted)}
 
     /* typing effect */
@@ -139,9 +212,12 @@
       border-right:2px solid rgba(255,255,255,0.7);
       animation:caret 0.8s step-end infinite;
     }
+    html.light .typing{
+      border-right-color:rgba(0,0,0,0.7);
+    }
     @keyframes caret{
       0%,100%{border-color:transparent;}
-      50%{border-color:rgba(255,255,255,0.8);}
+      50%{border-color:currentColor;}
     }
 
     /* Social vertical */
@@ -154,16 +230,21 @@
       width:44px;height:44px;border-radius:12px;
       display:flex;align-items:center;justify-content:center;
       background:var(--glass);
-      border:1px solid rgba(255,255,255,0.05);
-      text-decoration:none;color:#fff;
+      border:1px solid var(--border);
+      text-decoration:none;color:var(--text-strong);
       backdrop-filter:blur(6px);
       box-shadow:0 10px 25px rgba(15,23,42,0.6);
       transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+    }
+    html.light .social-vertical a{
+      box-shadow:0 8px 20px rgba(0,0,0,0.18);
+      color:var(--text);
     }
     .social-vertical a:hover{
       background:linear-gradient(135deg,var(--accent1),var(--accent2));
       box-shadow:0 16px 35px rgba(15,23,42,0.9);
       transform:translateY(-3px);
+      color:#020617;
     }
 
     /* Sections */
@@ -171,8 +252,16 @@
     h2.section-title{
       display:flex;align-items:center;gap:.6rem;
       font-size:18px;margin:0 0 1rem;
+      color:var(--text-strong);
     }
     .emoji{font-size:20px}
+
+    p, span, small, strong, div{
+      color:var(--text);
+    }
+    .muted, [style*="color:var(--muted)"]{
+      color:var(--muted) !important;
+    }
 
     /* Skills */
     .skills-grid{
@@ -180,10 +269,13 @@
     }
     .skill{
       padding:.8rem;border-radius:12px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.03));
-      border:1px solid rgba(255,255,255,0.04);
+      background:var(--surface-soft);
+      border:1px solid var(--border);
       position:relative;
       overflow:hidden;
+    }
+    html.light .skill{
+      background:#f7f8ff;
     }
     .skill::after{
       content:"";position:absolute;
@@ -193,6 +285,7 @@
     .skill:hover::after{opacity:1;}
     .skill .meta{
       display:flex;justify-content:space-between;font-weight:600;margin-bottom:.6rem;
+      color:var(--text-strong);
     }
     .bar{
       height:10px;background:var(--glass-2);border-radius:10px;overflow:hidden;
@@ -211,33 +304,39 @@
     }
     .project-card{
       padding:1rem;border-radius:14px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      cursor:pointer;border:1px solid rgba(255,255,255,0.04);
-      transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+      background:var(--surface-soft);
+      cursor:pointer;border:1px solid var(--border);
+      transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease;
+      color:var(--text);
+    }
+    html.light .project-card{
+      background:#f7f8ff;
     }
     .project-card:hover{
       transform:translateY(-6px) translateZ(0);
-      box-shadow:0 18px 40px rgba(15,23,42,0.85);
+      box-shadow:var(--shadow-strong);
       border-color:rgba(125,211,252,0.5);
     }
 
     /* Timeline */
     .edu-list{display:flex;flex-direction:column;gap:.8rem}
     .edu-item{
-      padding:.8rem;border-radius:12px;background:var(--glass);
-      border:1px solid rgba(255,255,255,0.04);
+      padding:.8rem;border-radius:12px;background:var(--surface-soft);
+      border:1px solid var(--border);
     }
+    html.light .edu-item{background:#f7f8ff;}
 
     /* Certifications */
     .certs{display:flex;flex-wrap:wrap;gap:.6rem}
     .cert{
       padding:.6rem .8rem;border-radius:999px;
-      background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(255,255,255,0.05);
+      background:var(--surface-soft);
+      border:1px solid var(--border);
       font-weight:600;font-size:13px;
       text-decoration:none;
-      transition:background .2s ease,transform .2s ease,border-color .2s ease;
+      transition:background .2s ease,transform .2s ease,border-color .2s ease,color .2s ease;
     }
+    html.light .cert{background:#f7f8ff;}
     .cert:hover{
       background:linear-gradient(90deg,var(--accent1),var(--accent2));
       color:#020617;
@@ -251,14 +350,15 @@
     }
     .contact-form input,.contact-form textarea{
       width:100%;padding:.8rem;border-radius:8px;
-      background:transparent;border:1px solid rgba(255,255,255,0.08);
-      color:#eaf2ff;outline:none;
+      background:var(--glass);
+      border:1px solid var(--border);
+      color:var(--text);outline:none;
       transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
     }
     .contact-form input:focus,.contact-form textarea:focus{
-      border-color:rgba(125,211,252,0.9);
+      border-color:var(--accent2);
       box-shadow:0 0 0 1px rgba(125,211,252,0.5);
-      background:rgba(15,23,42,0.7);
+      background:var(--glass-2);
     }
 
     .btn{
@@ -270,16 +370,26 @@
       box-shadow:0 14px 30px rgba(15,23,42,0.8);
       transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
     }
+    html.light .btn{
+      box-shadow:0 10px 24px rgba(0,0,0,0.18);
+    }
     .btn:hover{
       transform:translateY(-2px);
       box-shadow:0 18px 42px rgba(15,23,42,0.95);
       filter:brightness(1.05);
     }
+    html.light .btn:hover{
+      box-shadow:0 14px 32px rgba(0,0,0,0.22);
+    }
 
     footer{
       padding:2rem 0;text-align:center;color:var(--muted);
-      border-top:1px solid rgba(255,255,255,0.02);margin-top:3rem;
+      border-top:1px solid rgba(255,255,255,0.1);margin-top:3rem;
     }
+    html.light footer{
+      border-top:1px solid var(--border);
+    }
+    footer small{opacity:.9;}
 
     /* Rating & Feedback */
     .feedback-card{
@@ -297,6 +407,9 @@
     .rating-stars i{
       color:#4b5563;transition:transform .2s ease,color .2s ease,text-shadow .2s ease;
     }
+    html.light .rating-stars i{
+      color:#9ca3af;
+    }
     .rating-stars i.active{
       color:#fbbf24;
       text-shadow:0 0 14px rgba(251,191,36,0.8);
@@ -304,9 +417,9 @@
     }
     .feedback-input{
       width:100%;padding:.7rem;border-radius:10px;
-      background:rgba(15,23,42,0.7);
-      border:1px solid rgba(255,255,255,0.08);
-      color:#e5edff;outline:none;resize:vertical;
+      background:var(--glass);
+      border:1px solid var(--border);
+      color:var(--text);outline:none;resize:vertical;
       min-height:90px;
     }
 
@@ -318,7 +431,7 @@
       background:linear-gradient(140deg,var(--accent1),var(--accent2));
       display:flex;align-items:center;justify-content:center;
       color:#020617;
-      box-shadow:0 18px 45px rgba(15,23,42,0.9);
+      box-shadow:var(--shadow-fab);
       cursor:pointer;z-index:80;
       animation:floatBtn 3s ease-in-out infinite;
     }
@@ -331,14 +444,15 @@
       position:fixed;
       bottom:90px;right:24px;
       width:320px;max-width:calc(100% - 40px);
-      background:var(--card);
+      background:var(--surface);
       border-radius:16px;
-      box-shadow:0 24px 60px rgba(15,23,42,0.95);
+      box-shadow:var(--shadow-strong);
       display:none;flex-direction:column;
       overflow:hidden;z-index:80;
-      border:1px solid rgba(148,163,255,0.45);
+      border:1px solid var(--border);
       backdrop-filter:blur(10px);
       animation:fadeUp .25s ease-out;
+      color:var(--text);
     }
     @keyframes fadeUp{
       from{opacity:0;transform:translateY(10px);}
@@ -346,16 +460,20 @@
     }
     .chatbot-header{
       padding:.8rem 1rem;
-      border-bottom:1px solid rgba(255,255,255,0.06);
+      border-bottom:1px solid var(--border);
       display:flex;align-items:center;justify-content:space-between;
     }
     .chatbot-header span{
-      font-weight:600;font-size:14px;
+      font-weight:600;font-size:14px;color:var(--text-strong);
     }
     .chatbot-badge{
       font-size:11px;padding:.15rem .45rem;border-radius:999px;
       background:rgba(34,197,94,0.18);color:#bbf7d0;
       border:1px solid rgba(74,222,128,0.6);
+    }
+    html.light .chatbot-badge{
+      background:rgba(34,197,94,0.14);color:#166534;
+      border-color:rgba(22,163,74,0.7);
     }
     .chatbot-messages{
       padding:.8rem 1rem;
@@ -369,9 +487,10 @@
       line-height:1.35;
     }
     .msg.bot{
-      background:rgba(15,23,42,0.9);
+      background:var(--surface-soft);
       align-self:flex-start;
-      border:1px solid rgba(148,163,255,0.4);
+      border:1px solid var(--border);
+      color:var(--text);
     }
     .msg.user{
       background:linear-gradient(120deg,var(--accent1),var(--accent2));
@@ -380,15 +499,18 @@
     }
     .chatbot-input{
       padding:.6rem .7rem;
-      border-top:1px solid rgba(255,255,255,0.08);
+      border-top:1px solid var(--border);
       display:flex;gap:.5rem;align-items:center;
-      background:rgba(15,23,42,0.9);
+      background:var(--surface-soft);
+    }
+    html.light .chatbot-input{
+      background:#edf0ff;
     }
     .chatbot-input input{
       flex:1;border:none;border-radius:999px;
       padding:.55rem .8rem;
-      background:rgba(15,23,42,0.95);
-      color:#e5edff;font-size:13px;
+      background:var(--glass);
+      color:var(--text);font-size:13px;
       outline:none;
     }
     .chatbot-input button{
@@ -400,7 +522,41 @@
       font-size:13px;
     }
 
-    footer small{opacity:.9;}
+    /* THEME TOGGLE BUTTON */
+    .theme-toggle {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 99;
+      box-shadow: var(--shadow-fab);
+      transition: transform .3s ease, filter .3s ease;
+      animation: floatTheme 3s ease-in-out infinite;
+      color:#020617;
+    }
+    .theme-toggle:hover {
+      transform: translateY(-3px) rotate(15deg);
+      filter: brightness(1.1);
+    }
+    @keyframes floatTheme {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .theme-toggle.rotate {
+      animation: rotateIcon .5s ease;
+    }
+    @keyframes rotateIcon {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
     /* Responsive */
     @media (max-width:880px){
@@ -455,7 +611,7 @@
 
       <div style="margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center">
         <a class="btn" href="#contact"><i class="fas fa-envelope"></i> Hire / Enquire</a>
-        <a class="btn" href="#projects" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--muted);box-shadow:none"><i class="fas fa-eye"></i> View Projects</a>
+        <a class="btn" href="#projects" style="background:transparent;border:1px solid var(--border);color:var(--muted);box-shadow:none"><i class="fas fa-eye"></i> View Projects</a>
       </div>
 
       <div style="margin-top:1rem;color:var(--muted);display:flex;gap:1rem;flex-wrap:wrap">
@@ -473,25 +629,25 @@
       <div style="display:flex;align-items:center;justify-content:space-between">
         <div>
           <div style="font-weight:700">Open to work</div>
-          <div style="color:var(--muted);font-size:13px">PART-time / Contract / INTERNSHIPS</div>
+          <div class="muted" style="font-size:13px">PART-time / Contract / INTERNSHIPS</div>
         </div>
         <div style="text-align:right">
           <div style="font-weight:700;font-size:20px">DELHI</div>
-          <div style="color:var(--muted);font-size:13px">India 🇮🇳</div>
+          <div class="muted" style="font-size:13px">India 🇮🇳</div>
         </div>
       </div>
 
-      <hr style="margin:1rem 0;border:0;border-top:1px solid rgba(255,255,255,0.03)">
+      <hr style="margin:1rem 0;border:0;border-top:1px solid var(--border)">
       <div style="display:flex;gap:.5rem;flex-wrap:wrap">
         <!-- social buttons inside card -->
         <a href="https://www.linkedin.com/in/prakharai1212" target="_blank" class="btn" style="padding:.6rem .8rem;background:linear-gradient(90deg,#0a66c2,#0072b1);color:#fff"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-        <a href="https://github.com/prakhar9044-code" target="_blank" class="btn" style="padding:.6rem .8rem;background:#111;border:1px solid rgba(255,255,255,0.03);color:var(--muted);box-shadow:none"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://github.com/prakhar9044-code" target="_blank" class="btn" style="padding:.6rem .8rem;background:#111;border:1px solid var(--border);color:var(--muted);box-shadow:none"><i class="fab fa-github"></i> GitHub</a>
       </div>
 
-      <hr style="margin:1rem 0;border:0;border-top:1px solid rgba(255,255,255,0.03)">
+      <hr style="margin:1rem 0;border:0;border-top:1px solid var(--border)">
       <div style="display:flex;gap:.6rem;flex-direction:column">
         <div style="font-weight:700">Top Skills</div>
-        <div style="color:var(--muted);font-size:13px">Generative AI • LLMs • Prompt Engineering • Python • HTML • CSS</div>
+        <div class="muted" style="font-size:13px">Generative AI • LLMs • Prompt Engineering • Python • HTML • CSS</div>
       </div>
     </aside>
   </section>
@@ -548,26 +704,26 @@
     <div class="projects">
       <div class="project-card" onclick="openModal(0)" data-aos="fade-up" data-aos-delay="50">
         <h3>LLM-powered QA System</h3>
-        <p style="color:var(--muted)">Retrieval-augmented generation connecting domain docs to an LLM with semantic search.</p>
-        <div style="margin-top:.6rem;color:var(--muted);font-size:13px">Python • LangChain • Vector DB • Deployment</div>
+        <p class="muted">Retrieval-augmented generation connecting domain docs to an LLM with semantic search.</p>
+        <div class="muted" style="margin-top:.6rem;font-size:13px">Python • LangChain • Vector DB • Deployment</div>
       </div>
 
       <div class="project-card" onclick="openModal(1)" data-aos="fade-up" data-aos-delay="100">
         <h3>Generative Art Playground</h3>
-        <p style="color:var(--muted)">Creative image synthesis UI with prompt templates and model switching.</p>
-        <div style="margin-top:.6rem;color:var(--muted);font-size:13px">React • APIs • UX</div>
+        <p class="muted">Creative image synthesis UI with prompt templates and model switching.</p>
+        <div class="muted" style="margin-top:.6rem;font-size:13px">React • APIs • UX</div>
       </div>
 
       <div class="project-card" onclick="openModal(2)" data-aos="fade-up" data-aos-delay="150">
         <h3>Machine Learning Pipeline</h3>
-        <p style="color:var(--muted)">End-to-end pipeline for model training, evaluation and monitoring.</p>
-        <div style="margin-top:.6rem;color:var(--muted);font-size:13px">ML Ops • Python • Docker</div>
+        <p class="muted">End-to-end pipeline for model training, evaluation and monitoring.</p>
+        <div class="muted" style="margin-top:.6rem;font-size:13px">ML Ops • Python • Docker</div>
       </div>
 
       <div class="project-card" onclick="openModal(3)" data-aos="fade-up" data-aos-delay="200">
         <h3>Portfolio Website (this site)</h3>
-        <p style="color:var(--muted)">Modern, responsive resume website with animations and contact form.</p>
-        <div style="margin-top:.6rem;color:var(--muted);font-size:13px">HTML • CSS • JS</div>
+        <p class="muted">Modern, responsive resume website with animations and contact form.</p>
+        <div class="muted" style="margin-top:.6rem;font-size:13px">HTML • CSS • JS</div>
       </div>
     </div>
   </section>
@@ -586,15 +742,15 @@
     <div class="edu-list">
       <div class="edu-item">
         <strong>Bachelor of Technology — Computer Science [AI & ML]</strong>
-        <div style="color:var(--muted);font-size:13px">LOVELY PROFESSIONAL UNIVERSITY — 2029</div>
+        <div class="muted" style="font-size:13px">LOVELY PROFESSIONAL UNIVERSITY — 2029</div>
       </div>
       <div class="edu-item">
         <strong>12th / Senior Secondary</strong>
-        <div style="color:var(--muted);font-size:13px">THE JAIN INTERNATIONAL SCHOOL — 2025</div>
+        <div class="muted" style="font-size:13px">THE JAIN INTERNATIONAL SCHOOL — 2025</div>
       </div>
       <div class="edu-item">
         <strong>10th / HIGHER SECONDARY</strong>
-        <div style="color:var(--muted);font-size:13px">VIRENDRA SWARUP EDUCATION CENTRE — 2023</div>
+        <div class="muted" style="font-size:13px">VIRENDRA SWARUP EDUCATION CENTRE — 2023</div>
       </div>
     </div>
   </section>
@@ -624,7 +780,7 @@
     <h2 class="section-title"><span class="emoji">⭐</span> Rating & Feedback</h2>
     <div class="card feedback-card">
       <div>
-        <p style="color:var(--muted);font-size:14px;margin-top:0">
+        <p class="muted" style="font-size:14px;margin-top:0">
           How was your experience exploring my portfolio? Your feedback helps me improve this site and my overall presentation.
         </p>
         <div class="rating-stars" id="rating-stars">
@@ -634,14 +790,14 @@
           <i class="fa-solid fa-star" data-value="4"></i>
           <i class="fa-solid fa-star" data-value="5"></i>
         </div>
-        <div id="rating-text" style="color:var(--muted);font-size:13px;margin-bottom:.5rem">Tap a star to rate.</div>
+        <div id="rating-text" class="muted" style="font-size:13px;margin-bottom:.5rem">Tap a star to rate.</div>
       </div>
       <div>
         <textarea id="feedback-text" class="feedback-input" placeholder="Share anything that stood out, or suggestions for improvement..."></textarea>
         <button class="btn" style="margin-top:.6rem" onclick="submitFeedback()">
           <i class="fa-solid fa-comment-dots"></i> Submit Feedback
         </button>
-        <div id="feedback-status" style="color:var(--muted);font-size:12px;margin-top:.4rem;"></div>
+        <div id="feedback-status" class="muted" style="font-size:12px;margin-top:.4rem;"></div>
       </div>
     </div>
   </section>
@@ -663,18 +819,18 @@
 
           <div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
             <button class="btn" type="submit"><i class="fas fa-paper-plane"></i> Send Enquiry</button>
-            <div style="color:var(--muted);font-size:13px">Or email: <a href="mailto:pra9044rma@rediffmail.com">pra9044rma@rediffmail.com</a></div>
+            <div class="muted" style="font-size:13px">Or email: <a href="mailto:pra9044rma@rediffmail.com">pra9044rma@rediffmail.com</a></div>
           </div>
         </form>
       </div>
 
       <aside class="card">
         <h3>Personal Info</h3>
-        <p style="color:var(--muted)"><i class="fas fa-map-marker-alt"></i> Delhi , India</p>
-        <p style="color:var(--muted)"><i class="fas fa-envelope"></i> <a href="mailto:pra9044rma@rediffmail.com">pra9044rma@rediffmail.com</a></p>
-        <p style="color:var(--muted)"><i class="fas fa-phone"></i> +91-9555 070257</p>
+        <p class="muted"><i class="fas fa-map-marker-alt"></i> Delhi , India</p>
+        <p class="muted"><i class="fas fa-envelope"></i> <a href="mailto:pra9044rma@rediffmail.com">pra9044rma@rediffmail.com</a></p>
+        <p class="muted"><i class="fas fa-phone"></i> +91-9555 070257</p>
 
-        <hr style="margin:1rem 0;border:0;border-top:1px solid rgba(255,255,255,0.03)">
+        <hr style="margin:1rem 0;border:0;border-top:1px solid var(--border)">
         <div style="display:flex;gap:.5rem;flex-wrap:wrap">
           <a class="cert" href="#">Resume PDF</a>
           <a class="cert" href="#">Download</a>
@@ -699,7 +855,7 @@
   <div class="chatbot-header">
     <div>
       <span>Prakhar AI Assistant</span>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px;">Ask about my skills, projects, or how to contact me.</div>
+      <div class="muted" style="font-size:11px;margin-top:2px;">Ask about my skills, projects, or how to contact me.</div>
     </div>
     <span class="chatbot-badge">AI</span>
   </div>
@@ -714,8 +870,14 @@
   </div>
 </div>
 
+<!-- THEME TOGGLE BUTTON -->
+<div class="theme-toggle" id="theme-toggle" title="Switch Theme">
+  <i class="fa-solid fa-sun"></i>
+</div>
+
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
 <script>
   AOS.init({duration:700,once:true,offset:80});
   document.getElementById('year').innerText = new Date().getFullYear();
@@ -751,10 +913,10 @@
 
   // Modal content for projects
   const projects = [
-    {title:'LLM-powered QA System', html:`<h2>LLM-powered QA System</h2><p style="color:var(--muted)">A retrieval augmented generation system that uses semantic search over domain documents and an LLM to answer queries with citations and context.</p><p><strong>Tech:</strong> Python, LangChain, Vector DB, Docker</p>`},
-    {title:'Generative Art Playground', html:`<h2>Generative Art Playground</h2><p style="color:var(--muted)">UI to craft and iterate creative prompts, manage model selection and produce art variations.</p><p><strong>Tech:</strong> React, APIs, UX</p>`},
-    {title:'Machine Learning Pipeline', html:`<h2>Machine Learning Pipeline</h2><p style="color:var(--muted)">End-to-end ML pipeline for experiment tracking, model training and deployment.</p><p><strong>Tech:</strong> MLFlow, Python, Docker, CI/CD</p>`},
-    {title:'Portfolio Website', html:`<h2>Resume Website</h2><p style="color:var(--muted)">This very website — modern, responsive and designed to present skills & projects professionally.</p><p><strong>Tech:</strong> HTML, CSS, JS</p>`}
+    {title:'LLM-powered QA System', html:`<h2>LLM-powered QA System</h2><p class="muted">A retrieval augmented generation system that uses semantic search over domain documents and an LLM to answer queries with citations and context.</p><p><strong>Tech:</strong> Python, LangChain, Vector DB, Docker</p>`},
+    {title:'Generative Art Playground', html:`<h2>Generative Art Playground</h2><p class="muted">UI to craft and iterate creative prompts, manage model selection and produce art variations.</p><p><strong>Tech:</strong> React, APIs, UX</p>`},
+    {title:'Machine Learning Pipeline', html:`<h2>Machine Learning Pipeline</h2><p class="muted">End-to-end ML pipeline for experiment tracking, model training and deployment.</p><p><strong>Tech:</strong> MLFlow, Python, Docker, CI/CD</p>`},
+    {title:'Portfolio Website', html:`<h2>Resume Website</h2><p class="muted">This very website — modern, responsive and designed to present skills & projects professionally.</p><p><strong>Tech:</strong> HTML, CSS, JS</p>`}
   ];
 
   function openModal(i){
@@ -807,7 +969,6 @@
       status.textContent = "Please give a rating or share some feedback.";
       return;
     }
-    // This is just front-end. You can later connect it to Google Forms / backend.
     status.textContent = "Thank you for your time! Your feedback helps me improve. 🙏";
     document.getElementById('feedback-text').value = "";
   }
@@ -871,5 +1032,39 @@
     }
   });
 </script>
+
+<!-- THEME TOGGLE SCRIPT -->
+<script>
+  const themeToggle = document.getElementById('theme-toggle');
+
+  function applyTheme() {
+    const current = localStorage.getItem("theme");
+    if (current === "light") {
+      document.documentElement.classList.add("light");
+      themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    } else {
+      document.documentElement.classList.remove("light");
+      themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    }
+  }
+
+  // apply saved theme on load
+  applyTheme();
+
+  themeToggle.addEventListener("click", () => {
+    const isLight = !document.documentElement.classList.contains("light");
+    document.documentElement.classList.toggle("light", isLight);
+
+    themeToggle.classList.add("rotate");
+    setTimeout(()=> themeToggle.classList.remove("rotate"), 500);
+
+    themeToggle.innerHTML = isLight
+      ? '<i class="fa-solid fa-moon"></i>'
+      : '<i class="fa-solid fa-sun"></i>';
+
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+  });
+</script>
+
 </body>
 </html>
