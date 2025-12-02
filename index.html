@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Prakhar Verma — Resume</title>
-  <link rel="icon" href="Gemini_Generated_Image_dfkeihdfkeihdfke.png" type="image/png">
-
+  <link rel="icon" href="PROFILE.png" type="image/png">
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <!-- Font Awesome for icons -->
@@ -15,76 +14,393 @@
 
   <style>
     :root{
-      --bg:#0b1020;
+      --bg:#060916;
       --card:#0f1724;
       --muted:#9aa6bd;
       --accent1:#7c5cff; /* violet */
       --accent2:#00d4ff; /* cyan */
-      --glass: rgba(255,255,255,0.03);
+      --accent-soft:#4ad0c6;
+      --glass: rgba(255,255,255,0.04);
       --glass-2: rgba(255,255,255,0.02);
     }
     *{box-sizing:border-box}
-    html,body{height:100%;font-family:'Inter',system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,var(--bg),#05060a);color:#e6eef8;margin:0}
+    html,body{
+      height:100%;
+      font-family:'Inter',system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:radial-gradient(circle at top, #151b30 0, #050711 55%, #020309 100%);
+      color:#e6eef8;
+      margin:0;
+    }
     a{color:inherit}
 
+    /* subtle moving background glows */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-20%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(124,92,255,0.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(0,212,255,0.18), transparent 55%);
+      opacity:0.9;
+      filter:blur(10px);
+      z-index:-1;
+      animation:drift 16s ease-in-out infinite alternate;
+    }
+    @keyframes drift{
+      from{transform:translate3d(0,0,0);}
+      to{transform:translate3d(-25px,18px,0);}
+    }
+
     /* Layout */
-    header{position:fixed;top:0;left:0;right:0;backdrop-filter:blur(6px);background:linear-gradient(180deg, rgba(11,16,32,0.6), rgba(11,16,32,0.3));border-bottom:1px solid rgba(255,255,255,0.03);z-index:50}
+    header{
+      position:fixed;
+      top:0;left:0;right:0;
+      backdrop-filter:blur(10px);
+      background:linear-gradient(180deg, rgba(5,8,18,0.85), rgba(5,8,18,0.35));
+      border-bottom:1px solid rgba(255,255,255,0.04);
+      z-index:50;
+    }
     .container{max-width:1100px;margin:0 auto;padding:6rem 1rem 4rem}
-    header .container {
-  padding: 3rem 1rem 2rem; /* smaller top spacing for hero section */
-}
+    header .container{padding:3rem 1rem 1.6rem;}
 
-    nav{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 0;height:15px;}
-    .logo{display:flex;gap:.6rem;align-items:center;font-weight:700}
-    .logo .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--accent1),var(--accent2));box-shadow:0 6px 18px rgba(124,92,255,0.12)}
-    .nav-links{display:flex;gap:1rem;height:15px}
-    .nav-links a{padding:.45rem .7rem;border-radius:8px;font-weight:600;color:var(--muted);text-decoration:none}
-    .nav-links a:hover{color:#fff;background:var(--glass)}
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:2rem;align-items:center;padding-top:2rem}
+    nav{display:flex;align-items:center;justify-content:space-between;}
+    .logo{
+      display:flex;gap:.6rem;align-items:center;
+      font-weight:700;
+      letter-spacing:0.03em;
+    }
+    .logo .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      box-shadow:0 6px 18px rgba(124,92,255,0.4);
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1);opacity:.9;}
+      50%{transform:scale(1.2);opacity:1;}
+    }
 
-    /* Profile card */
-    .card{background:linear-gradient(180deg,var(--card), rgba(15,23,36,0.6));padding:1.6rem;border-radius:14px;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-    .avatar{width:96px;height:96px;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:38px}
+    .nav-links{display:flex;gap:1rem}
+    .nav-links a{
+      padding:.45rem .7rem;border-radius:999px;
+      font-weight:600;color:var(--muted);text-decoration:none;
+      font-size:14px;
+      background:transparent;
+      transition:background .2s ease,color .2s ease,transform .2s ease;
+    }
+    .nav-links a:hover{
+      color:#fff;background:var(--glass);
+      transform:translateY(-2px);
+    }
+
+    .hero{
+      display:grid;grid-template-columns:1fr 360px;
+      gap:2rem;align-items:center;padding-top:2rem;
+    }
+
+    /* Card + hover float */
+    .card{
+      background:linear-gradient(180deg,var(--card), rgba(15,23,36,0.7));
+      padding:1.6rem;border-radius:16px;
+      box-shadow:0 18px 40px rgba(2,6,23,0.8);
+      border:1px solid rgba(255,255,255,0.05);
+      transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 24px 60px rgba(2,6,23,0.9);
+      border-color:rgba(148,163,255,0.35);
+    }
+
+    /* Profile avatar */
+    .avatar{
+      width:96px;height:96px;border-radius:20px;
+      overflow:hidden;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,var(--accent2),var(--accent1));
+      box-shadow:0 8px 22px rgba(15,23,42,0.75);
+      flex-shrink:0;
+    }
+    .avatar img{
+      width:100%;height:100%;object-fit:cover;
+      display:block;
+    }
 
     .intro h1{margin:0 0 .2rem;font-size:28px;letter-spacing:-0.3px}
     .intro p{margin:0;color:var(--muted)}
 
+    /* typing effect */
+    .typing{
+      color:var(--accent-soft);
+      font-weight:500;
+      font-size:14px;
+      margin-top:4px;
+      white-space:nowrap;
+      overflow:hidden;
+      border-right:2px solid rgba(255,255,255,0.7);
+      animation:caret 0.8s step-end infinite;
+    }
+    @keyframes caret{
+      0%,100%{border-color:transparent;}
+      50%{border-color:rgba(255,255,255,0.8);}
+    }
+
     /* Social vertical */
-    .social-vertical{position:fixed;left:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.6rem;z-index:40}
-    .social-vertical a{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--glass);border:1px solid rgba(255,255,255,0.03);text-decoration:none;color:#fff}
+    .social-vertical{
+      position:fixed;left:16px;top:50%;
+      transform:translateY(-50%);
+      display:flex;flex-direction:column;gap:.6rem;z-index:40;
+    }
+    .social-vertical a{
+      width:44px;height:44px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.05);
+      text-decoration:none;color:#fff;
+      backdrop-filter:blur(6px);
+      box-shadow:0 10px 25px rgba(15,23,42,0.6);
+      transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+    }
+    .social-vertical a:hover{
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      box-shadow:0 16px 35px rgba(15,23,42,0.9);
+      transform:translateY(-3px);
+    }
 
     /* Sections */
     section{margin-top:2.2rem}
-    h2.section-title{display:flex;align-items:center;gap:.6rem;font-size:18px;margin:0 0 1rem}
+    h2.section-title{
+      display:flex;align-items:center;gap:.6rem;
+      font-size:18px;margin:0 0 1rem;
+    }
     .emoji{font-size:20px}
 
     /* Skills */
-    .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
-    .skill{padding:.8rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.03)}
-    .skill .meta{display:flex;justify-content:space-between;font-weight:600;margin-bottom:.6rem}
-    .bar{height:10px;background:var(--glass-2);border-radius:10px;overflow:hidden}
-    .bar > i{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));transform-origin:left;animation:grow 1.2s ease forwards}
+    .skills-grid{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;
+    }
+    .skill{
+      padding:.8rem;border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.04);
+      position:relative;
+      overflow:hidden;
+    }
+    .skill::after{
+      content:"";position:absolute;
+      inset:-40%;background:radial-gradient(circle at 0 0,rgba(124,92,255,0.18),transparent 55%);
+      opacity:0;transition:opacity .25s ease;
+    }
+    .skill:hover::after{opacity:1;}
+    .skill .meta{
+      display:flex;justify-content:space-between;font-weight:600;margin-bottom:.6rem;
+    }
+    .bar{
+      height:10px;background:var(--glass-2);border-radius:10px;overflow:hidden;
+    }
+    .bar > i{
+      display:block;height:100%;border-radius:10px;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      transform-origin:left;
+      animation:grow 1.2s ease forwards;
+    }
     @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
     /* Projects */
-    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-    .project-card{padding:1rem;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));cursor:pointer;border:1px solid rgba(255,255,255,0.03);transition:transform .2s ease}
-    .project-card:hover{transform:translateY(-6px)}
+    .projects{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;
+    }
+    .project-card{
+      padding:1rem;border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      cursor:pointer;border:1px solid rgba(255,255,255,0.04);
+      transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+    }
+    .project-card:hover{
+      transform:translateY(-6px) translateZ(0);
+      box-shadow:0 18px 40px rgba(15,23,42,0.85);
+      border-color:rgba(125,211,252,0.5);
+    }
 
     /* Timeline */
     .edu-list{display:flex;flex-direction:column;gap:.8rem}
-    .edu-item{padding:.8rem;border-radius:12px;background:var(--glass)}
+    .edu-item{
+      padding:.8rem;border-radius:12px;background:var(--glass);
+      border:1px solid rgba(255,255,255,0.04);
+    }
 
     /* Certifications */
     .certs{display:flex;flex-wrap:wrap;gap:.6rem}
-    .cert{padding:.6rem .8rem;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);font-weight:600}
+    .cert{
+      padding:.6rem .8rem;border-radius:999px;
+      background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.05);
+      font-weight:600;font-size:13px;
+      text-decoration:none;
+      transition:background .2s ease,transform .2s ease,border-color .2s ease;
+    }
+    .cert:hover{
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#020617;
+      border-color:transparent;
+      transform:translateY(-2px);
+    }
 
     /* Contact / Enquiry */
-    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:1rem}
-    .contact-form input,.contact-form textarea{width:100%;padding:.8rem;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#eaf2ff}
-    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.7rem 1rem;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;color:#061022;font-weight:700;cursor:pointer}
+    .contact-grid{
+      display:grid;grid-template-columns:1fr 320px;gap:1rem;
+    }
+    .contact-form input,.contact-form textarea{
+      width:100%;padding:.8rem;border-radius:8px;
+      background:transparent;border:1px solid rgba(255,255,255,0.08);
+      color:#eaf2ff;outline:none;
+      transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+    }
+    .contact-form input:focus,.contact-form textarea:focus{
+      border-color:rgba(125,211,252,0.9);
+      box-shadow:0 0 0 1px rgba(125,211,252,0.5);
+      background:rgba(15,23,42,0.7);
+    }
 
-    footer{padding:2rem 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:3rem}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      padding:.7rem 1rem;border-radius:10px;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      border:none;color:#061022;font-weight:700;
+      cursor:pointer;font-size:14px;
+      box-shadow:0 14px 30px rgba(15,23,42,0.8);
+      transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 42px rgba(15,23,42,0.95);
+      filter:brightness(1.05);
+    }
+
+    footer{
+      padding:2rem 0;text-align:center;color:var(--muted);
+      border-top:1px solid rgba(255,255,255,0.02);margin-top:3rem;
+    }
+
+    /* Rating & Feedback */
+    .feedback-card{
+      display:grid;
+      grid-template-columns:1.1fr 1fr;
+      gap:1.2rem;
+      align-items:flex-start;
+    }
+    @media (max-width:720px){
+      .feedback-card{grid-template-columns:1fr;}
+    }
+    .rating-stars{
+      display:flex;gap:.25rem;font-size:24px;cursor:pointer;margin-bottom:.5rem;
+    }
+    .rating-stars i{
+      color:#4b5563;transition:transform .2s ease,color .2s ease,text-shadow .2s ease;
+    }
+    .rating-stars i.active{
+      color:#fbbf24;
+      text-shadow:0 0 14px rgba(251,191,36,0.8);
+      transform:translateY(-1px) scale(1.02);
+    }
+    .feedback-input{
+      width:100%;padding:.7rem;border-radius:10px;
+      background:rgba(15,23,42,0.7);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#e5edff;outline:none;resize:vertical;
+      min-height:90px;
+    }
+
+    /* Chatbot */
+    .chatbot-toggle{
+      position:fixed;
+      bottom:24px;right:24px;
+      width:54px;height:54px;border-radius:50%;
+      background:linear-gradient(140deg,var(--accent1),var(--accent2));
+      display:flex;align-items:center;justify-content:center;
+      color:#020617;
+      box-shadow:0 18px 45px rgba(15,23,42,0.9);
+      cursor:pointer;z-index:80;
+      animation:floatBtn 3s ease-in-out infinite;
+    }
+    @keyframes floatBtn{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-6px);}
+    }
+
+    .chatbot-window{
+      position:fixed;
+      bottom:90px;right:24px;
+      width:320px;max-width:calc(100% - 40px);
+      background:var(--card);
+      border-radius:16px;
+      box-shadow:0 24px 60px rgba(15,23,42,0.95);
+      display:none;flex-direction:column;
+      overflow:hidden;z-index:80;
+      border:1px solid rgba(148,163,255,0.45);
+      backdrop-filter:blur(10px);
+      animation:fadeUp .25s ease-out;
+    }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(10px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    .chatbot-header{
+      padding:.8rem 1rem;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .chatbot-header span{
+      font-weight:600;font-size:14px;
+    }
+    .chatbot-badge{
+      font-size:11px;padding:.15rem .45rem;border-radius:999px;
+      background:rgba(34,197,94,0.18);color:#bbf7d0;
+      border:1px solid rgba(74,222,128,0.6);
+    }
+    .chatbot-messages{
+      padding:.8rem 1rem;
+      max-height:260px;overflow-y:auto;
+      display:flex;flex-direction:column;gap:.5rem;
+      font-size:13px;
+    }
+    .msg{
+      padding:.45rem .7rem;border-radius:12px;
+      max-width:85%;
+      line-height:1.35;
+    }
+    .msg.bot{
+      background:rgba(15,23,42,0.9);
+      align-self:flex-start;
+      border:1px solid rgba(148,163,255,0.4);
+    }
+    .msg.user{
+      background:linear-gradient(120deg,var(--accent1),var(--accent2));
+      color:#020617;
+      align-self:flex-end;
+    }
+    .chatbot-input{
+      padding:.6rem .7rem;
+      border-top:1px solid rgba(255,255,255,0.08);
+      display:flex;gap:.5rem;align-items:center;
+      background:rgba(15,23,42,0.9);
+    }
+    .chatbot-input input{
+      flex:1;border:none;border-radius:999px;
+      padding:.55rem .8rem;
+      background:rgba(15,23,42,0.95);
+      color:#e5edff;font-size:13px;
+      outline:none;
+    }
+    .chatbot-input button{
+      border:none;border-radius:999px;
+      width:34px;height:34px;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(120deg,var(--accent1),var(--accent2));
+      color:#020617;cursor:pointer;
+      font-size:13px;
+    }
+
+    footer small{opacity:.9;}
 
     /* Responsive */
     @media (max-width:880px){
@@ -94,7 +410,6 @@
       .nav-links{display:none}
       header .container{padding-left:1rem;padding-right:1rem}
     }
-
   </style>
 </head>
 <body>
@@ -109,6 +424,7 @@
         <a href="#projects">Projects</a>
         <a href="#education">Education</a>
         <a href="#certifications">Certifications</a>
+        <a href="#feedback">Feedback</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -127,16 +443,19 @@
   <section class="hero" id="about">
     <div class="intro card" data-aos="fade-up">
       <div style="display:flex;gap:1rem;align-items:center">
-        <div class="avatar" style="background:linear-gradient(135deg,var(--accent2),var(--accent1));">PV</div>
+        <!-- Your real image here -->
+        <div class="avatar">
+          <img src="PROFILE.png" alt="Prakhar Verma">
+        </div>
         <div>
           <h1>Prakhar Verma <span style="font-weight:500;color:var(--muted);font-size:14px">- AI AND CSE STUDENT</span></h1>
-          <p>Generative AI • LLMs • Machine Learning • Prompt Engineering • Python & HTML/CSS</p>
+          <p id="typing" class="typing"></p>
         </div>
       </div>
 
       <div style="margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center">
         <a class="btn" href="#contact"><i class="fas fa-envelope"></i> Hire / Enquire</a>
-        <a class="btn" href="#projects" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)"><i class="fas fa-eye"></i> View Projects</a>
+        <a class="btn" href="#projects" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--muted);box-shadow:none"><i class="fas fa-eye"></i> View Projects</a>
       </div>
 
       <div style="margin-top:1rem;color:var(--muted);display:flex;gap:1rem;flex-wrap:wrap">
@@ -144,7 +463,9 @@
         <div><strong>Phone:</strong> +91-9555070257</div>
       </div>
 
-      <p style="margin-top:1rem;color:var(--muted)">A concise, professional resume website highlighting my AI, LLM, and engineering projects. Built with modern UI, animations, and responsive design. 🚀</p>
+      <p style="margin-top:1rem;color:var(--muted)">
+        A calm, minimal resume website highlighting my AI, LLM, and software engineering projects — designed for clarity, focus, and a peaceful viewing experience. 🌿
+      </p>
     </div>
 
     <!-- Right profile quick card -->
@@ -164,7 +485,7 @@
       <div style="display:flex;gap:.5rem;flex-wrap:wrap">
         <!-- social buttons inside card -->
         <a href="https://www.linkedin.com/in/prakharai1212" target="_blank" class="btn" style="padding:.6rem .8rem;background:linear-gradient(90deg,#0a66c2,#0072b1);color:#fff"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-        <a href="https://github.com/prakhar9044-code" target="_blank" class="btn" style="padding:.6rem .8rem;background:#111;border:1px solid rgba(255,255,255,0.03);color:var(--muted)"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://github.com/prakhar9044-code" target="_blank" class="btn" style="padding:.6rem .8rem;background:#111;border:1px solid rgba(255,255,255,0.03);color:var(--muted);box-shadow:none"><i class="fab fa-github"></i> GitHub</a>
       </div>
 
       <hr style="margin:1rem 0;border:0;border-top:1px solid rgba(255,255,255,0.03)">
@@ -179,7 +500,6 @@
   <section id="skills" data-aos="fade-up">
     <h2 class="section-title"><span class="emoji">🛠️</span> Skills</h2>
     <div class="skills-grid">
-      <!-- skill items: adjust widths as percentage via inline style to animate -->
       <div class="skill">
         <div class="meta"><span>Generative AI</span><span>Expert</span></div>
         <div class="bar"><i style="width:95%"></i></div>
@@ -226,26 +546,25 @@
   <section id="projects" data-aos="fade-up">
     <h2 class="section-title"><span class="emoji">📁</span> Projects</h2>
     <div class="projects">
-      <!-- Example project card (duplicate/edit as needed) -->
-      <div class="project-card" onclick="openModal(0)">
+      <div class="project-card" onclick="openModal(0)" data-aos="fade-up" data-aos-delay="50">
         <h3>LLM-powered QA System</h3>
         <p style="color:var(--muted)">Retrieval-augmented generation connecting domain docs to an LLM with semantic search.</p>
         <div style="margin-top:.6rem;color:var(--muted);font-size:13px">Python • LangChain • Vector DB • Deployment</div>
       </div>
 
-      <div class="project-card" onclick="openModal(1)">
+      <div class="project-card" onclick="openModal(1)" data-aos="fade-up" data-aos-delay="100">
         <h3>Generative Art Playground</h3>
         <p style="color:var(--muted)">Creative image synthesis UI with prompt templates and model switching.</p>
         <div style="margin-top:.6rem;color:var(--muted);font-size:13px">React • APIs • UX</div>
       </div>
 
-      <div class="project-card" onclick="openModal(2)">
+      <div class="project-card" onclick="openModal(2)" data-aos="fade-up" data-aos-delay="150">
         <h3>Machine Learning Pipeline</h3>
         <p style="color:var(--muted)">End-to-end pipeline for model training, evaluation and monitoring.</p>
         <div style="margin-top:.6rem;color:var(--muted);font-size:13px">ML Ops • Python • Docker</div>
       </div>
 
-      <div class="project-card" onclick="openModal(3)">
+      <div class="project-card" onclick="openModal(3)" data-aos="fade-up" data-aos-delay="200">
         <h3>Portfolio Website (this site)</h3>
         <p style="color:var(--muted)">Modern, responsive resume website with animations and contact form.</p>
         <div style="margin-top:.6rem;color:var(--muted);font-size:13px">HTML • CSS • JS</div>
@@ -284,19 +603,46 @@
   <section id="certifications" data-aos="fade-up">
     <h2 class="section-title"><span class="emoji">📜</span> Certifications</h2>
     <div class="certs">
-      <div class="cert"><a href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=A04A17CEE858F4A8CFD5CB45ABBC63AABDBA1CED20C1D2309DFD5432D6455385">Oracle Data Science Professional — Certificate</a></div>
-      <div class="cert"><a href="https://www.credly.com/badges/cd49251b-f877-44ae-8363-c688a4d7fc0a/public_url">IBM CyberSecurity Fundamentals — Certificate</a></div>
-      <div class="cert"><a href="https://www.sololearn.com/en/certificates/CC-WCPSZ2TP">Generative AI — Certificate</a></div>
-      <div class="cert"><a href="https://www.sololearn.com/en/certificates/CC-WC1ZLCOY">Introduction to LLMs — Certificate </a></div>
-      <div class="cert"><a href="https://www.sololearn.com/en/certificates/CC-CU61JZ8H">Machine Learning — Certificate</a></div>
-      <div class="cert"><a href="https://www.sololearn.com/en/certificates/CC-VBGFKZIQ">Prompt Engineering Fundamentals</a></div>
-      <div class="cert"><a href="https://www.sololearn.com/en/certificates/CC-WITL9IVS">Python for Beginners — Certificate</a></div>
-      <div class="cert"><a href="https://www.sololearn.com/en/certificates/CC-LQSAGVIJ">Introduction to Programming Using HTML — Certificate</a></div>
-      <div class="cert"><a href="https://www.sololearn.com/en/certificates/CC-3MQ5JO6Z">Introduction to CSS — Certificate</a></div>
-      <div class="cert"><a href="https://www.sololearn.com/en/certificates/CC-9EMDNQJB">Python Intermediate — Certificate</a></div>
-      <div class="cert"><a href="https://www.sololearn.com/en/certificates/CC-FJ5GTNAM">Write with AI — Certificate</a></div>
-      <div class="cert"><a href="https://www.credly.com/badges/03de804d-b0b2-49a8-bd77-ca98772f8097">Artificial Intelligence by Amazon — Certificate</a></div>
-      <div class="cert"><a href="https://www.coursera.org/account/accomplishments/verify/4N6N6VEY9XY5?utm_source%3Dandroid%26utm_medium%3Dcertificate%26utm_content%3Dcert_image%26utm_campaign%3Dsharing_cta%26utm_product%3Dcourse">Generative AI by Google — Certificate</a></div>
+      <a class="cert" href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=A04A17CEE858F4A8CFD5CB45ABBC63AABDBA1CED20C1D2309DFD5432D6455385">Oracle Data Science Professional — Certificate</a>
+      <a class="cert" href="https://www.credly.com/badges/cd49251b-f877-44ae-8363-c688a4d7fc0a/public_url">IBM CyberSecurity Fundamentals — Certificate</a>
+      <a class="cert" href="https://www.sololearn.com/en/certificates/CC-WCPSZ2TP">Generative AI — Certificate</a>
+      <a class="cert" href="https://www.sololearn.com/en/certificates/CC-WC1ZLCOY">Introduction to LLMs — Certificate</a>
+      <a class="cert" href="https://www.sololearn.com/en/certificates/CC-CU61JZ8H">Machine Learning — Certificate</a>
+      <a class="cert" href="https://www.sololearn.com/en/certificates/CC-VBGFKZIQ">Prompt Engineering Fundamentals</a>
+      <a class="cert" href="https://www.sololearn.com/en/certificates/CC-WITL9IVS">Python for Beginners — Certificate</a>
+      <a class="cert" href="https://www.sololearn.com/en/certificates/CC-LQSAGVIJ">Introduction to Programming Using HTML — Certificate</a>
+      <a class="cert" href="https://www.sololearn.com/en/certificates/CC-3MQ5JO6Z">Introduction to CSS — Certificate</a>
+      <a class="cert" href="https://www.sololearn.com/en/certificates/CC-9EMDNQJB">Python Intermediate — Certificate</a>
+      <a class="cert" href="https://www.sololearn.com/en/certificates/CC-FJ5GTNAM">Write with AI — Certificate</a>
+      <a class="cert" href="https://www.credly.com/badges/03de804d-b0b2-49a8-bd77-ca98772f8097">Artificial Intelligence by Amazon — Certificate</a>
+      <a class="cert" href="https://www.coursera.org/account/accomplishments/verify/4N6N6VEY9XY5?utm_source%3Dandroid%26utm_medium%3Dcertificate%26utm_content%3Dcert_image%26utm_campaign%3Dsharing_cta%26utm_product%3Dcourse">Generative AI by Google — Certificate</a>
+    </div>
+  </section>
+
+  <!-- RATING & FEEDBACK -->
+  <section id="feedback" data-aos="fade-up">
+    <h2 class="section-title"><span class="emoji">⭐</span> Rating & Feedback</h2>
+    <div class="card feedback-card">
+      <div>
+        <p style="color:var(--muted);font-size:14px;margin-top:0">
+          How was your experience exploring my portfolio? Your feedback helps me improve this site and my overall presentation.
+        </p>
+        <div class="rating-stars" id="rating-stars">
+          <i class="fa-solid fa-star" data-value="1"></i>
+          <i class="fa-solid fa-star" data-value="2"></i>
+          <i class="fa-solid fa-star" data-value="3"></i>
+          <i class="fa-solid fa-star" data-value="4"></i>
+          <i class="fa-solid fa-star" data-value="5"></i>
+        </div>
+        <div id="rating-text" style="color:var(--muted);font-size:13px;margin-bottom:.5rem">Tap a star to rate.</div>
+      </div>
+      <div>
+        <textarea id="feedback-text" class="feedback-input" placeholder="Share anything that stood out, or suggestions for improvement..."></textarea>
+        <button class="btn" style="margin-top:.6rem" onclick="submitFeedback()">
+          <i class="fa-solid fa-comment-dots"></i> Submit Feedback
+        </button>
+        <div id="feedback-status" style="color:var(--muted);font-size:12px;margin-top:.4rem;"></div>
+      </div>
     </div>
   </section>
 
@@ -315,7 +661,7 @@
           <label style="font-weight:700;margin-top:.6rem;display:block">Message</label>
           <textarea id="message" rows="6" placeholder="Tell me about the role or inquiry..." required></textarea>
 
-          <div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center">
+          <div style="margin-top:.8rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
             <button class="btn" type="submit"><i class="fas fa-paper-plane"></i> Send Enquiry</button>
             <div style="color:var(--muted);font-size:13px">Or email: <a href="mailto:pra9044rma@rediffmail.com">pra9044rma@rediffmail.com</a></div>
           </div>
@@ -338,34 +684,70 @@
   </section>
 
   <footer>
-    <div style="max-width:1100px;margin:0 auto;padding:1rem">Made with ❤️ • Prakhar Verma — © <span id="year"></span></div>
+    <div style="max-width:1100px;margin:0 auto;padding:1rem">
+      <small>Made with ❤️ • Prakhar Verma — © <span id="year"></span></small>
+    </div>
   </footer>
 </main>
 
+<!-- Chatbot UI -->
+<div class="chatbot-toggle" id="chatbot-toggle" title="Chat with my AI assistant">
+  <i class="fa-solid fa-robot"></i>
+</div>
+
+<div class="chatbot-window" id="chatbot-window" aria-hidden="true">
+  <div class="chatbot-header">
+    <div>
+      <span>Prakhar AI Assistant</span>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px;">Ask about my skills, projects, or how to contact me.</div>
+    </div>
+    <span class="chatbot-badge">AI</span>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages">
+    <div class="msg bot">
+      Hi! 👋 I'm an AI assistant for this portfolio. Ask me anything about Prakhar's skills, projects, or how to reach him.
+    </div>
+  </div>
+  <div class="chatbot-input">
+    <input type="text" id="chatbot-input" placeholder="Type your question..." />
+    <button id="chatbot-send"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</div>
+
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<!-- <script type="text/javascript">
-    (function (l) {
-      if (l.search[1] === "/") {
-        var decoded = l.search
-          .slice(1)
-          .split("&")
-          .map(function (s) {
-            return s.replace(/~and~/g, "&");
-          })
-          .join("?");
-        window.history.replaceState(
-          null,
-          null,
-          l.pathname.slice(0, -1) + decoded + l.hash
-        );
-      }
-    })(window.location);
-  </script> -->
 <script>
-  alert("Welcome to my Resume Website! Explore my skills, projects, and experience. Feel free to reach out via the contact form or email. Enjoy your visit!");
   AOS.init({duration:700,once:true,offset:80});
   document.getElementById('year').innerText = new Date().getFullYear();
+
+  // Typing effect under your name
+  const typingElement = document.getElementById('typing');
+  const typingPhrases = [
+    "Generative AI • LLMs • Machine Learning",
+    "Prompt Engineering • Python • HTML/CSS",
+    "Building calm, user-friendly experiences"
+  ];
+  let tpIndex = 0, charIndex = 0, deleting = false;
+
+  function typeLoop(){
+    const current = typingPhrases[tpIndex];
+    if(!deleting){
+      typingElement.textContent = current.slice(0, ++charIndex);
+      if(charIndex === current.length){
+        deleting = true;
+        setTimeout(typeLoop, 1400);
+        return;
+      }
+    }else{
+      typingElement.textContent = current.slice(0, --charIndex);
+      if(charIndex === 0){
+        deleting = false;
+        tpIndex = (tpIndex + 1) % typingPhrases.length;
+      }
+    }
+    setTimeout(typeLoop, deleting ? 40 : 70);
+  }
+  typeLoop();
 
   // Modal content for projects
   const projects = [
@@ -382,7 +764,7 @@
   }
   function closeModal(){ document.getElementById('modal').style.display='none'; }
 
-  // Simple enquiry form handler — opens mail client (safer) and also shows a friendly tip
+  // Simple enquiry form handler — opens mail client
   function submitForm(e){
     e.preventDefault();
     const name = document.getElementById('name').value.trim();
@@ -400,6 +782,93 @@
       const target = document.querySelector(this.getAttribute('href'));
       if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
     });
+  });
+
+  // Rating & Feedback logic (front-end only)
+  const ratingStars = document.querySelectorAll('#rating-stars i');
+  const ratingText = document.getElementById('rating-text');
+  let selectedRating = 0;
+
+  ratingStars.forEach(star=>{
+    star.addEventListener('click', ()=>{
+      selectedRating = Number(star.dataset.value);
+      ratingStars.forEach(s=>{
+        s.classList.toggle('active', Number(s.dataset.value) <= selectedRating);
+      });
+      const labels = ["Very poor","Could be better","Good","Very good","Excellent!"];
+      ratingText.textContent = labels[selectedRating-1] || "Tap a star to rate.";
+    });
+  });
+
+  function submitFeedback(){
+    const feedback = document.getElementById('feedback-text').value.trim();
+    const status = document.getElementById('feedback-status');
+    if(!selectedRating && !feedback){
+      status.textContent = "Please give a rating or share some feedback.";
+      return;
+    }
+    // This is just front-end. You can later connect it to Google Forms / backend.
+    status.textContent = "Thank you for your time! Your feedback helps me improve. 🙏";
+    document.getElementById('feedback-text').value = "";
+  }
+
+  // Simple AI-like chatbot (rule-based on front-end)
+  const chatbotToggle = document.getElementById('chatbot-toggle');
+  const chatbotWindow = document.getElementById('chatbot-window');
+  const chatbotMessages = document.getElementById('chatbot-messages');
+  const chatbotInput = document.getElementById('chatbot-input');
+  const chatbotSend = document.getElementById('chatbot-send');
+
+  chatbotToggle.addEventListener('click', ()=>{
+    const visible = chatbotWindow.style.display === 'flex';
+    chatbotWindow.style.display = visible ? 'none' : 'flex';
+    chatbotWindow.setAttribute('aria-hidden', visible ? 'true' : 'false');
+    if(!visible){chatbotInput.focus();}
+  });
+
+  function appendMessage(text, from="bot"){
+    const div = document.createElement('div');
+    div.className = `msg ${from}`;
+    div.innerHTML = text;
+    chatbotMessages.appendChild(div);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function botReply(userText){
+    const text = userText.toLowerCase();
+    let reply;
+
+    if(text.includes("skill") || text.includes("tech") || text.includes("stack")){
+      reply = "I work with Generative AI, LLMs, Machine Learning, Python, and modern web technologies like HTML/CSS. You can explore the Skills section for a quick overview. ⚙️";
+    }else if(text.includes("project")){
+      reply = "You'll find my highlighted projects in the Projects section — including an LLM QA system, generative art playground, ML pipeline, and this portfolio itself. 📁";
+    }else if(text.includes("contact") || text.includes("email") || text.includes("reach")){
+      reply = "You can contact Prakhar directly via the Contact section or email at <strong>pra9044rma@rediffmail.com</strong>. 📬";
+    }else if(text.includes("resume") || text.includes("cv")){
+      reply = "Scroll down to the Contact section; you'll find buttons to view or download the resume PDF there. 📄";
+    }else if(text.includes("intern") || text.includes("work") || text.includes("job")){
+      reply = "Prakhar is open to part-time roles, internships, and contract opportunities in AI/ML and software dev. Feel free to describe your opportunity in the contact form. 🤝";
+    }else{
+      reply = "Thanks for your question! If it's about my skills, projects, or opportunities, you can also use the sections on this page or email me directly at <strong>pra9044rma@rediffmail.com</strong>. 🌱";
+    }
+
+    setTimeout(()=>appendMessage(reply,"bot"), 400);
+  }
+
+  function handleChatSend(){
+    const text = chatbotInput.value.trim();
+    if(!text) return;
+    appendMessage(text,"user");
+    chatbotInput.value = "";
+    botReply(text);
+  }
+
+  chatbotSend.addEventListener('click', handleChatSend);
+  chatbotInput.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      handleChatSend();
+    }
   });
 </script>
 </body>
