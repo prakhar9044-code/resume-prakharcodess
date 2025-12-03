@@ -202,16 +202,15 @@
     .intro p{margin:0;color:var(--muted)}
 
     /* typing effect */
-    .typing{
-      color:var(--accent-soft);
-      font-weight:500;
-      font-size:14px;
-      margin-top:4px;
-      white-space:nowrap;
-      overflow:hidden;
-      border-right:2px solid rgba(255,255,255,0.7);
-      animation:caret 0.8s step-end infinite;
+    .static-skill-text{
+    margin-top:4px;
+    font-size:14px;
+    font-weight:600;
+    color:#ff9800; /* calm orange */
+    text-transform:uppercase;
+    letter-spacing:0.06em;
     }
+
     html.light .typing{
       border-right-color:rgba(0,0,0,0.7);
     }
@@ -307,7 +306,7 @@
       height:10px;background:var(--glass-2);border-radius:10px;overflow:hidden;
     }
 
-    /* FIXED: progress bar animation that doesn't cause layout jank */
+    /* progress bar animation (safe, no layout jank) */
     .bar > i{
       display:block;
       height:100%;
@@ -693,14 +692,13 @@
       }
     }
 
+    /* UPDATED: smoother, lighter glow animation on name */
     .landing-name-highlight{
-      background:linear-gradient(120deg,var(--accent1),var(--accent2),#f97316,var(--accent1));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
       position:relative;
-      background-size:200% 200%;
-      animation:gradientFlow 9s ease-in-out infinite alternate;
+      color:var(--text-strong);
+      text-shadow:0 0 6px rgba(124,92,255,0.5),0 0 14px rgba(56,189,248,0.65);
+      animation:pulseGlow 4.5s ease-in-out infinite;
+      transition:text-shadow .25s ease;
     }
 
     .landing-name-highlight::after{
@@ -708,20 +706,23 @@
       position:absolute;
       inset:-4px -6px;
       border-radius:999px;
-      background:radial-gradient(circle at 0 0,rgba(124,92,255,0.16),transparent 55%);
-      opacity:0;
+      background:radial-gradient(circle at 0 0,rgba(124,92,255,0.18),transparent 60%);
+      opacity:0.6;
       z-index:-1;
-      transition:opacity .4s ease;
+      pointer-events:none;
     }
 
-    .landing-hero:hover .landing-name-highlight::after{
-      opacity:1;
+    .landing-hero:hover .landing-name-highlight{
+      text-shadow:0 0 14px rgba(124,92,255,0.8),0 0 28px rgba(56,189,248,1);
     }
 
-    @keyframes gradientFlow{
-      0%{background-position:0% 50%;}
-      50%{background-position:100% 50%;}
-      100%{background-position:0% 50%;}
+    @keyframes pulseGlow{
+      0%,100%{
+        text-shadow:0 0 6px rgba(124,92,255,0.45),0 0 14px rgba(56,189,248,0.6);
+      }
+      50%{
+        text-shadow:0 0 14px rgba(124,92,255,0.85),0 0 28px rgba(56,189,248,1);
+      }
     }
 
     .landing-cta-row{
@@ -854,6 +855,26 @@
       pointer-events:none;
       animation:heroSweep 1.4s ease-out .9s forwards;
     }
+    .gradient-name {
+  font-weight: 800;
+  background: linear-gradient(
+    90deg,
+    #ff9800,
+    #ff0066,
+    #7c5cff,
+    #00d4ff
+  );
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flowGradient 6s ease-in-out infinite alternate;
+}
+
+@keyframes flowGradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
 
     @keyframes heroSweep{
       0%{
@@ -1345,9 +1366,10 @@
 <section class="landing-hero" id="home">
   <div class="landing-left">
     <h4>AI • Machine Learning • Web</h4>
-    <h1>
-      Hi, I’m <span class="landing-name-highlight">Prakhar Verma</span>
-    </h1>
+    <h1 class="landing-title">
+  Hi, I’m <span class="gradient-name">Prakhar Verma</span>
+</h1>
+
     <div class="landing-subtitle">AI & Computer Science Student</div>
     <p class="landing-intro">
       I build intelligent systems with Generative AI, LLMs, and Machine Learning — combining clean user
@@ -1402,7 +1424,10 @@
         </div>
         <div>
           <h1>Prakhar Verma <span style="font-weight:500;color:var(--muted);font-size:14px">- AI AND CSE STUDENT</span></h1>
-          <p id="typing" class="typing"></p>
+          <p class="static-skill-text">
+  Generative AI • LLMs • Machine Learning • Prompt Engineering • Python • HTML/CSS
+</p>
+
         </div>
       </div>
 
@@ -1495,32 +1520,20 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- PROJECTS (UPDATED WITH YOUR REAL PROJECTS) -->
   <section id="projects" data-aos="fade-up">
     <h2 class="section-title"><span class="emoji">📁</span> Projects</h2>
     <div class="projects">
       <div class="project-card" onclick="openModal(0)" data-aos="fade-up" data-aos-delay="50">
-        <h3>LLM-powered QA System</h3>
-        <p class="muted">Retrieval-augmented generation connecting domain docs to an LLM with semantic search.</p>
-        <div class="muted" style="margin-top:.6rem;font-size:13px">Python • LangChain • Vector DB • Deployment</div>
+        <h3>My Portfolio Website</h3>
+        <p class="muted">Responsive personal portfolio showcasing my skills, projects, and contact information with a clean modern UI.</p>
+        <div class="muted" style="margin-top:.6rem;font-size:13px">HTML • CSS • JavaScript • Responsive UI</div>
       </div>
 
       <div class="project-card" onclick="openModal(1)" data-aos="fade-up" data-aos-delay="100">
-        <h3>Generative Art Playground</h3>
-        <p class="muted">Creative image synthesis UI with prompt templates and model switching.</p>
-        <div class="muted" style="margin-top:.6rem;font-size:13px">React • APIs • UX</div>
-      </div>
-
-      <div class="project-card" onclick="openModal(2)" data-aos="fade-up" data-aos-delay="150">
-        <h3>Machine Learning Pipeline</h3>
-        <p class="muted">End-to-end pipeline for model training, evaluation and monitoring.</p>
-        <div class="muted" style="margin-top:.6rem;font-size:13px">ML Ops • Python • Docker</div>
-      </div>
-
-      <div class="project-card" onclick="openModal(3)" data-aos="fade-up" data-aos-delay="200">
-        <h3>Portfolio Website (this site)</h3>
-        <p class="muted">Modern, responsive resume website with animations and contact form.</p>
-        <div class="muted" style="margin-top:.6rem;font-size:13px">HTML • CSS • JS</div>
+        <h3>EDU REV (LPU) Prototype Website</h3>
+        <p class="muted">High-performance prototype website for Edu Rev at LPU with structured layouts and institutional branding.</p>
+        <div class="muted" style="margin-top:.6rem;font-size:13px">HTML5 • CSS • UI/UX • Responsive Layouts</div>
       </div>
     </div>
   </section>
@@ -1696,7 +1709,7 @@
 
         <hr style="margin:1rem 0;border:0;border-top:1px solid var(--border)">
 
-        <!-- NEW WORKING RESUME BUTTONS -->
+        <!-- WORKING RESUME BUTTONS -->
         <div class="resume-actions">
           <a
             href="Professional%20B.Tech%20Resume%20LaTeX.pdf"
@@ -1766,41 +1779,26 @@
   AOS.init({duration:700,once:true,offset:80});
   document.getElementById('year').innerText = new Date().getFullYear();
 
-  // Typing effect under your name (original hero)
-  const typingElement = document.getElementById('typing');
-  const typingPhrases = [
-    "Generative AI • LLMs • Machine Learning",
-    "Prompt Engineering • Python • HTML/CSS",
-    "Building calm, user-friendly experiences"
-  ];
-  let tpIndex = 0, charIndex = 0, deleting = false;
 
-  function typeLoop(){
-    const current = typingPhrases[tpIndex];
-    if(!deleting){
-      typingElement.textContent = current.slice(0, ++charIndex);
-      if(charIndex === current.length){
-        deleting = true;
-        setTimeout(typeLoop, 1400);
-        return;
-      }
-    }else{
-      typingElement.textContent = current.slice(0, --charIndex);
-      if(charIndex === 0){
-        deleting = false;
-        tpIndex = (tpIndex + 1) % typingPhrases.length;
-      }
-    }
-    setTimeout(typeLoop, deleting ? 40 : 70);
-  }
-  typeLoop();
 
-  // Modal content for projects
+  // Modal content for projects (UPDATED)
   const projects = [
-    {title:'LLM-powered QA System', html:`<h2>LLM-powered QA System</h2><p class="muted">A retrieval augmented generation system that uses semantic search over domain documents and an LLM to answer queries with citations and context.</p><p><strong>Tech:</strong> Python, LangChain, Vector DB, Docker</p>`},
-    {title:'Generative Art Playground', html:`<h2>Generative Art Playground</h2><p class="muted">UI to craft and iterate creative prompts, manage model selection and produce art variations.</p><p><strong>Tech:</strong> React, APIs, UX</p>`},
-    {title:'Machine Learning Pipeline', html:`<h2>Machine Learning Pipeline</h2><p class="muted">End-to-end ML pipeline for experiment tracking, model training and deployment.</p><p><strong>Tech:</strong> MLFlow, Python, Docker, CI/CD</p>`},
-    {title:'Portfolio Website', html:`<h2>Resume Website</h2><p class="muted">This very website — modern, responsive and designed to present skills & projects professionally.</p><p><strong>Tech:</strong> HTML, CSS, JS</p>`}
+    {
+      title:'My Portfolio Website',
+      html:'<h2>My Portfolio Website</h2>\
+<p class="muted">A fully responsive and modern personal portfolio website showcasing my skills, projects, and contact information with a clean UI and smooth animations.</p>\
+<p><strong>Duration:</strong> Sep 2025 – Nov 2025</p>\
+<p><strong>Tech:</strong> HTML, CSS, JavaScript, Responsive Design, Modern Web Animations</p>\
+<p style="margin-top:1rem"><a href="https://resume-prakharcodess.vercel.app/" target="_blank" class="btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Live Site</a></p>'
+    },
+    {
+      title:'EDU REV (LPU) Prototype Website',
+      html:'<h2>EDU REV (LPU) Prototype Website</h2>\
+<p class="muted">A professional, high-performance prototype website for Edu Rev at Lovely Professional University, with clean layouts, institutional branding, and student-friendly navigation.</p>\
+<p><strong>Duration:</strong> Oct 2025 – Oct 2025</p>\
+<p><strong>Tech:</strong> HTML5, CSS, UI/UX Design Principles, Responsive Layouts, Modern Web Styling</p>\
+<p style="margin-top:1rem"><a href="https://edu-rev-website-prototype.vercel.app/" target="_blank" class="btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Live Site</a></p>'
+    }
   ];
 
   function openModal(i){
@@ -1886,7 +1884,7 @@
     if(text.includes("skill") || text.includes("tech") || text.includes("stack")){
       reply = "I work with Generative AI, LLMs, Machine Learning, Python, and modern web technologies like HTML/CSS. You can explore the Skills section for a quick overview. ⚙️";
     }else if(text.includes("project")){
-      reply = "You'll find my highlighted projects in the Projects section — including an LLM QA system, generative art playground, ML pipeline, and this portfolio itself. 📁";
+      reply = "You'll find my highlighted projects in the Projects section — including my portfolio website and the EDU REV prototype for LPU. 📁";
     }else if(text.includes("contact") || text.includes("email") || text.includes("reach")){
       reply = "You can contact Prakhar directly via the Contact section or email at <strong>pra9044rma@rediffmail.com</strong>. 📬";
     }else if(text.includes("resume") || text.includes("cv")){
