@@ -597,7 +597,6 @@
       gap:2.5rem;
       align-items:center;
       position:relative;
-      overflow:hidden;
     }
 
     .landing-hero::before{
@@ -612,43 +611,12 @@
       z-index:-1;
     }
 
-    /* subtle particle layer behind hero */
-    .landing-hero::after{
-      content:"";
-      position:absolute;
-      inset:-10%;
-      pointer-events:none;
-      background-image:
-        radial-gradient(circle at 10% 20%, rgba(148,163,255,0.25) 0, transparent 55%),
-        radial-gradient(circle at 80% 10%, rgba(56,189,248,0.22) 0, transparent 55%),
-        radial-gradient(circle at 20% 80%, rgba(96,165,250,0.18) 0, transparent 55%),
-        radial-gradient(circle at 75% 75%, rgba(45,212,191,0.18) 0, transparent 55%);
-      opacity:0.38;
-      mix-blend-mode:screen;
-      animation:particleDrift 22s linear infinite alternate;
-      z-index:-2;
-    }
-
-    @keyframes particleDrift{
-      0%{transform:translate3d(0,0,0) scale(1);}
-      50%{transform:translate3d(-12px,10px,0) scale(1.03);}
-      100%{transform:translate3d(10px,-14px,0) scale(1.02);}
-    }
-
-    .landing-left{
-      position:relative;
-      z-index:1;
-    }
-
     .landing-left h4{
       font-size:14px;
       text-transform:uppercase;
       letter-spacing:0.16em;
       color:var(--accent-soft);
       margin:0 0 .6rem;
-      opacity:0;
-      transform:translateY(10px);
-      animation:textRise .7s ease-out .05s forwards;
     }
 
     .landing-left h1{
@@ -656,51 +624,14 @@
       font-size:clamp(2.1rem,3vw,2.7rem);
       line-height:1.15;
       color:var(--text-strong);
-      opacity:0;
-      transform:translateY(14px);
-      animation:textRise .75s ease-out .15s forwards;
-    }
-
-    .landing-subtitle{
-      margin-top:.6rem;
-      font-size:14px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:0.16em;
-      opacity:0;
-      transform:translateY(12px);
-      animation:textRise .7s ease-out .3s forwards;
-    }
-
-    .landing-intro{
-      margin-top:1rem;
-      font-size:14px;
-      max-width:540px;
-      color:var(--muted);
-      opacity:0;
-      transform:translateY(14px);
-      animation:textRise .75s ease-out .45s forwards;
-    }
-
-    @keyframes textRise{
-      0%{
-        opacity:0;
-        transform:translateY(16px);
-      }
-      100%{
-        opacity:1;
-        transform:translateY(0);
-      }
     }
 
     .landing-name-highlight{
-      background:linear-gradient(120deg,var(--accent1),var(--accent2),#f97316,var(--accent1));
+      background:linear-gradient(120deg,var(--accent1),var(--accent2));
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
       position:relative;
-      background-size:200% 200%;
-      animation:gradientFlow 9s ease-in-out infinite alternate;
     }
 
     .landing-name-highlight::after{
@@ -718,10 +649,19 @@
       opacity:1;
     }
 
-    @keyframes gradientFlow{
-      0%{background-position:0% 50%;}
-      50%{background-position:100% 50%;}
-      100%{background-position:0% 50%;}
+    .landing-subtitle{
+      margin-top:.6rem;
+      font-size:14px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+    }
+
+    .landing-intro{
+      margin-top:1rem;
+      font-size:14px;
+      max-width:540px;
+      color:var(--muted);
     }
 
     .landing-cta-row{
@@ -730,9 +670,6 @@
       flex-wrap:wrap;
       gap:.8rem;
       align-items:center;
-      opacity:0;
-      transform:translateY(14px);
-      animation:textRise .75s ease-out .6s forwards;
     }
 
     .btn-ghost{
@@ -759,16 +696,6 @@
       box-shadow:0 16px 34px rgba(15,23,42,0.8);
     }
 
-    /* strengthen hover on hero buttons (magnetic-ish feel) */
-    .landing-cta-row .btn,
-    .landing-cta-row .btn-ghost{
-      transition:transform .22s ease, box-shadow .25s ease, filter .25s ease;
-    }
-    .landing-cta-row .btn:hover,
-    .landing-cta-row .btn-ghost:hover{
-      transform:translateY(-3px) scale(1.02);
-    }
-
     .landing-social-row{
       margin-top:1.2rem;
       display:flex;
@@ -776,9 +703,6 @@
       gap:.6rem;
       align-items:center;
       font-size:14px;
-      opacity:0;
-      transform:translateY(14px);
-      animation:textRise .75s ease-out .75s forwards;
     }
 
     .landing-social-row span{
@@ -829,8 +753,7 @@
       gap:.5rem;
       font-size:12px;
       color:var(--muted);
-      opacity:0;
-      animation:textRise .7s ease-out 1s forwards;
+      opacity:.85;
     }
     .landing-scroll i{
       animation:scrollBounce 1.8s ease-in-out infinite;
@@ -840,41 +763,11 @@
       50%{transform:translateY(4px);}
     }
 
-    /* glass light sweep over left content */
-    .landing-left::after{
-      content:"";
-      position:absolute;
-      top:-10%;
-      bottom:-10%;
-      left:-40%;
-      width:40%;
-      background:linear-gradient(120deg,transparent,rgba(255,255,255,0.32),transparent);
-      opacity:0;
-      transform:translateX(-120%) skewX(-24deg);
-      pointer-events:none;
-      animation:heroSweep 1.4s ease-out .9s forwards;
-    }
-
-    @keyframes heroSweep{
-      0%{
-        opacity:0;
-        transform:translateX(-130%) skewX(-24deg);
-      }
-      35%{
-        opacity:.8;
-      }
-      100%{
-        opacity:0;
-        transform:translateX(180%) skewX(-24deg);
-      }
-    }
-
     .landing-right{
       display:flex;
       justify-content:center;
       align-items:center;
       position:relative;
-      z-index:1;
     }
 
     .landing-photo-wrap{
@@ -903,22 +796,10 @@
         );
       filter:blur(6px);
       opacity:.9;
-      animation:
-        orbitSpin 14s linear infinite,
-        orbitPulse 6s ease-in-out infinite;
+      animation:orbitSpin 14s linear infinite;
     }
     @keyframes orbitSpin{
       to{transform:rotate(360deg);}
-    }
-    @keyframes orbitPulse{
-      0%,100%{
-        opacity:.75;
-        transform:scale(1);
-      }
-      50%{
-        opacity:1;
-        transform:scale(1.05);
-      }
     }
 
     .landing-photo-inner{
@@ -1343,7 +1224,7 @@
 
 <!-- NEW LANDING HERO -->
 <section class="landing-hero" id="home">
-  <div class="landing-left">
+  <div class="landing-left" data-aos="fade-up">
     <h4>AI • Machine Learning • Web</h4>
     <h1>
       Hi, I’m <span class="landing-name-highlight">Prakhar Verma</span>
