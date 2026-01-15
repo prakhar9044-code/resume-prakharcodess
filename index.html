@@ -1332,10 +1332,147 @@
         min-height:unset;
       }
     }
+
+    /* ===============================
+   NEXT-LEVEL COFFEE SUPPORT BUTTON
+   =============================== */
+
+.coffee-glass{
+  position:fixed;
+  bottom:24px;
+  right:96px;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,0.22),
+    rgba(255,255,255,0.06)
+  );
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:96;
+  cursor:pointer;
+
+  box-shadow:
+    0 0 18px rgba(255,183,3,0.45),
+    0 18px 45px rgba(0,0,0,0.6);
+
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+
+/* tooltip */
+.coffee-tooltip{
+  position:absolute;
+  right:72px;
+  background:rgba(15,23,42,0.85);
+  backdrop-filter:blur(10px);
+  color:#fff;
+  font-size:12px;
+  padding:.45rem .7rem;
+  border-radius:8px;
+  opacity:0;
+  transform:translateY(6px);
+  pointer-events:none;
+  white-space:nowrap;
+  transition:.25s ease;
+  border:1px solid rgba(255,255,255,0.15);
+}
+
+.coffee-glass:hover .coffee-tooltip{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* cup */
+.coffee-cup{
+  position:relative;
+  font-size:24px;
+  color:#ffb703;
+}
+
+.coffee-cup i{
+  position:relative;
+  z-index:3;
+  text-shadow:
+    0 0 10px rgba(255,183,3,0.9),
+    0 0 22px rgba(255,152,0,0.7);
+}
+
+/* liquid fill */
+.coffee-liquid{
+  position:absolute;
+  bottom:4px;
+  left:4px;
+  right:4px;
+  height:0%;
+  background:linear-gradient(180deg,#8b4513,#3e1f0d);
+  border-radius:0 0 12px 12px;
+  z-index:2;
+  transition:height .5s ease;
+}
+
+.coffee-glass:hover .coffee-liquid{
+  height:55%;
+}
+
+/* steam */
+.steam{
+  position:absolute;
+  width:6px;
+  height:18px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.65);
+  top:-12px;
+  filter:blur(2px);
+  opacity:0;
+  animation:steamUp 2.5s ease-in-out infinite;
+}
+
+.s1{left:-6px;animation-delay:0s;}
+.s2{left:4px;animation-delay:.6s;}
+.s3{left:14px;animation-delay:1.2s;}
+
+@keyframes steamUp{
+  0%{transform:translateY(0) scale(.8);opacity:0;}
+  30%{opacity:.7;}
+  100%{transform:translateY(-18px) scale(1.2);opacity:0;}
+}
+
+.coffee-glass:hover .steam{
+  opacity:1;
+}
+
+/* hover */
+.coffee-glass:hover{
+  transform:translateY(-5px) scale(1.07);
+  box-shadow:
+    0 0 30px rgba(255,183,3,0.85),
+    0 24px 60px rgba(0,0,0,0.75);
+}
+
+/* light theme */
+html.light .coffee-glass{
+  background:#ffffff;
+  border:1px solid rgba(0,0,0,0.12);
+  box-shadow:0 14px 34px rgba(0,0,0,0.2);
+}
+
+/* mobile */
+@media (max-width:600px){
+  .coffee-glass{
+    right:24px;
+    bottom:96px;
+  }
+}
+
   </style>
 </head>
 <body>
-
 <header>
   <div class="container">
     <nav>
@@ -1913,7 +2050,41 @@
       handleChatSend();
     }
   });
+
 </script>
+<script>
+  const coffeeBtn = document.querySelector('.coffee-glass');
+  const footer = document.querySelector('footer');
+
+  // subtle attention pulse near footer
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        coffeeBtn.classList.add('coffee-attention');
+        setTimeout(() => {
+          coffeeBtn.classList.remove('coffee-attention');
+        }, 2500);
+      }
+    });
+  }, {threshold:0.3});
+
+  observer.observe(footer);
+
+  // pulse animation
+  const style = document.createElement('style');
+  style.innerHTML = `
+    .coffee-attention{
+      animation:coffeePing 1.2s ease-in-out 2;
+    }
+    @keyframes coffeePing{
+      0%{box-shadow:0 0 0 rgba(255,183,3,0.0);}
+      50%{box-shadow:0 0 40px rgba(255,183,3,0.9);}
+      100%{box-shadow:0 0 0 rgba(255,183,3,0.0);}
+    }
+  `;
+  document.head.appendChild(style);
+</script>
+
 
 <!-- THEME TOGGLE SCRIPT -->
 <script>
@@ -1986,6 +2157,40 @@
     });
   });
 </script>
+<!-- BUY ME A COFFEE FLOATING BUTTON
+<a
+  href="https://www.buymeacoffee.com/YOUR_USERNAME"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="bmc-float"
+  title="Buy me a coffee ☕"
+>
+  <img
+    src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
+    alt="Buy Me A Coffee"
+  />
+</a> -->
+<!-- GLASSMORPHISM COFFEE SUPPORT BUTTON -->
+<!-- GLASSMORPHISM COFFEE SUPPORT BUTTON -->
+<a
+  href="https://www.buymeacoffee.com/prakhar_codess"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="coffee-glass"
+  aria-label="Support my work"
+>
+  <span class="coffee-tooltip">Support my work ☕</span>
+
+  <div class="coffee-cup">
+    <div class="coffee-liquid"></div>
+    <i class="fa-solid fa-mug-hot"></i>
+
+    <!-- steam -->
+    <span class="steam s1"></span>
+    <span class="steam s2"></span>
+    <span class="steam s3"></span>
+  </div>
+</a>
 
 </body>
 </html>
