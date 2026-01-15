@@ -1470,6 +1470,35 @@ html.light .coffee-glass{
   }
 }
 
+/* ===============================
+   TYPING EFFECT STYLES
+   =============================== */
+
+.typing-wrapper{
+  margin-top:.6rem;
+  font-size:14px;
+  font-weight:600;
+  color:var(--accent2);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+.typing-text{
+  white-space:nowrap;
+}
+
+.typing-cursor{
+  margin-left:2px;
+  animation:blink 1s infinite;
+  font-weight:700;
+}
+
+@keyframes blink{
+  0%,50%,100%{opacity:1;}
+  25%,75%{opacity:0;}
+}
+
+
   </style>
 </head>
 <body>
@@ -1506,8 +1535,13 @@ html.light .coffee-glass{
     <h1 class="landing-title">
   Hi, I’m <span class="gradient-name">Prakhar Verma</span>
 </h1>
+<div class="typing-wrapper">
+  <span class="typing-text" id="typing"></span>
+  <span class="typing-cursor">|</span>
+</div>
 
-    <div class="landing-subtitle">AI & Computer Science Student</div>
+
+    <!-- <div class="landing-subtitle">AI & Computer Science Student</div> -->
     <p class="landing-intro">
       I build intelligent systems with Generative AI, LLMs, and Machine Learning — combining clean user
       experiences with scalable software engineering. I love experimenting, shipping, and learning from real-world projects.
@@ -1549,7 +1583,6 @@ html.light .coffee-glass{
     </div>
   </div>
 </section>
-
 <main class="container">
   <!-- ORIGINAL HERO / ABOUT -->
   <section class="hero" id="about">
@@ -1865,10 +1898,18 @@ html.light .coffee-glass{
             <i class="fa-solid fa-download"></i>
             <span>Download</span>
           </a>
+          <a
+    href="recruiter.html?src=portfolio"
+    class="btn-ghost"
+  >
+    👔 Hiring? Start here
+  </a>
         </div>
         <div class="resume-hint" style="margin-top:.35rem;">
           Opens as PDF • Downloads directly to your device.
         </div>
+
+
       </aside>
     </div>
   </section>
@@ -2191,6 +2232,66 @@ html.light .coffee-glass{
     <span class="steam s3"></span>
   </div>
 </a>
+<script>
+  const ref = document.referrer.toLowerCase();
+  const ua = navigator.userAgent.toLowerCase();
+
+  const looksLikeRecruiter =
+    ref.includes("linkedin.com") ||
+    ref.includes("indeed.com") ||
+    ref.includes("naukri.com") ||
+    ref.includes("glassdoor.com") ||
+    ua.includes("linkedin");
+
+  if(looksLikeRecruiter && !sessionStorage.getItem("recruiterPromptShown")){
+    sessionStorage.setItem("recruiterPromptShown","yes");
+
+    setTimeout(() => {
+      if(confirm("👋 Are you here for hiring? I have a focused recruiter page.")){
+        window.location.href = "recruiter.html?src=auto";
+      }
+    }, 2500);
+  }
+</script>
+
+<script>
+  const typingElement = document.getElementById("typing");
+
+  const words = [
+    "AI & MACHINE LEARNING",
+    "GENERATIVE AI & LLMS",
+    "SOFTWARE ENGINEERING",
+    "PROBLEM SOLVER",
+    "OPEN TO INTERNSHIPS"
+  ];
+
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeEffect(){
+    const currentWord = words[wordIndex];
+    typingElement.textContent = currentWord.substring(0, charIndex);
+
+    if(!isDeleting && charIndex < currentWord.length){
+      charIndex++;
+      setTimeout(typeEffect, 90);
+    }
+    else if(isDeleting && charIndex > 0){
+      charIndex--;
+      setTimeout(typeEffect, 50);
+    }
+    else{
+      isDeleting = !isDeleting;
+      if(!isDeleting){
+        wordIndex = (wordIndex + 1) % words.length;
+      }
+      setTimeout(typeEffect, 1000);
+    }
+  }
+
+  typeEffect();
+</script>
 
 </body>
 </html>
