@@ -1,0 +1,145 @@
+{
+  "personal": {
+    "name": "Prakhar Verma",
+    "title": "Elite AI & Frontend Developer",
+    "subtitle": "AI • Machine Learning • Web",
+    "bio1": "Currently pursuing B.Tech in Computer Science (AI & ML) at Lovely Professional University. Obsessed with combining the raw power of Machine Learning and LLMs with flawless, pixel-perfect frontend architectures.",
+    "bio2": "Whether engineering a scalable SaaS platform like Spendex AI or crafting ultra-smooth animations, I believe in one core philosophy: Write clean code, build smart systems, and never compromise on the user experience.",
+    "philosophy": "Write clean code, build smart systems, and never compromise on the user experience.",
+    "status": "Online & Ready",
+    "responseTime": "< 24 Hours",
+    "currentFocus": "AI & Scalable Architecture",
+    "availability": "Open to Opportunities"
+  },
+  "contact": {
+    "email": "pra9044rma@rediffmail.com",
+    "github": "https://github.com/prakhar9044-code",
+    "linkedin": "https://www.linkedin.com/in/prakharai1212",
+    "hackerrank": "https://www.hackerrank.com/profile/prakhar9044verma",
+    "leetcode": "https://leetcode.com/u/jxLXeIbuH1/",
+    "stackoverflow": "https://stackoverflow.com/users/31419366/prakhar-verma"
+  },
+  "skills": {
+    "aiAndDataScience": [
+      { "name": "Python",           "level": 95, "color": "#FFD43B" },
+      { "name": "Generative AI",    "level": 90, "color": "#7c5cff" },
+      { "name": "LLMs & Prompts",   "level": 92, "color": "#00d4ff" },
+      { "name": "Machine Learning", "level": 88, "color": "#22c55e" },
+      { "name": "Data Science",     "level": 85, "color": "#f59e0b" },
+      { "name": "Midjourney",       "level": 90, "color": "#ec4899" }
+    ],
+    "softwareEngineering": [
+      { "name": "HTML / CSS",    "level": 92, "color": "#f97316" },
+      { "name": "JavaScript",   "level": 88, "color": "#eab308" },
+      { "name": "C++",          "level": 84, "color": "#60a5fa" },
+      { "name": "Java",         "level": 75, "color": "#f87171" },
+      { "name": "PostgreSQL",   "level": 82, "color": "#34d399" },
+      { "name": "REST APIs",    "level": 86, "color": "#a78bfa" }
+    ],
+    "cyberAndHardware": [
+      { "name": "Cybersecurity",       "level": 88, "color": "#22c55e" },
+      { "name": "Kali Linux",          "level": 85, "color": "#64748b" },
+      { "name": "Threat Intel",        "level": 80, "color": "#ef4444" },
+      { "name": "Social Engineering",  "level": 90, "color": "#f59e0b" },
+      { "name": "Git",                 "level": 88, "color": "#f97316" },
+      { "name": "Arduino",             "level": 82, "color": "#06b6d4" }
+    ]
+  },
+  "projects": [
+    {
+      "id": "spendex",
+      "title": "Spendex AI",
+      "emoji": "💸",
+      "description": "An advanced AI-driven SaaS platform designed to streamline and automate expense and payroll management for modern businesses. Built to handle complex calculations and provide intelligent financial insights.",
+      "tech": ["HTML", "CSS", "JavaScript", "AI Integration"],
+      "live": "https://spendex-ai-uyxw.vercel.app/",
+      "accentColor": "#7c5cff",
+      "year": "2024"
+    },
+    {
+      "id": "civisync",
+      "title": "CiviSync",
+      "emoji": "🏙️",
+      "description": "A powerful civic issue reporting platform aimed at bridging the gap between local citizens and authorities. Features an intuitive UI for rapid reporting and real-time status updates.",
+      "tech": ["Frontend UI/UX", "Web Architecture", "Responsive Design"],
+      "live": "https://civisync-rho.vercel.app/",
+      "accentColor": "#00d4ff",
+      "year": "2024"
+    },
+    {
+      "id": "edurev",
+      "title": "EDU REV",
+      "emoji": "📚",
+      "description": "An educational prototype developed for Lovely Professional University to streamline resource sharing, course management, and peer-to-peer networking among students.",
+      "tech": ["React", "Tailwind CSS", "Architecture"],
+      "live": "https://edu-rev-website-prototype.vercel.app/",
+      "accentColor": "#22c55e",
+      "year": "2024"
+    },
+    {
+      "id": "peopleconnect",
+      "title": "People Connect",
+      "emoji": "🤝",
+      "description": "A networking and community platform designed to foster digital connections. Engineered with responsive design principles to ensure a flawless experience across all devices.",
+      "tech": ["HTML5", "Modern CSS", "JavaScript"],
+      "live": "https://peopleconnect-rho.vercel.app/",
+      "accentColor": "#f59e0b",
+      "year": "2024"
+    },
+    {
+      "id": "portfolio",
+      "title": "Portfolio V1",
+      "emoji": "🎨",
+      "description": "The previous iteration of my personal developer portfolio, built with Vanilla HTML, CSS, and JS. The foundation before upgrading to this premium architecture.",
+      "tech": ["Vanilla JS", "CSS Animations", "Responsive"],
+      "live": "https://resume-prakharcodess.vercel.app/",
+      "accentColor": "#ec4899",
+      "year": "2023"
+    }
+  ],
+  "education": [
+    {
+      "period": "2025 – 2029",
+      "degree": "B.Tech CSE (AI & ML)",
+      "school": "Lovely Professional University",
+      "status": "current"
+    },
+    {
+      "period": "Graduated 2025",
+      "degree": "Senior Secondary (12th)",
+      "school": "The Jain International School",
+      "status": "completed"
+    },
+    {
+      "period": "Graduated 2023",
+      "degree": "Higher Secondary (10th)",
+      "school": "Virendra Swarup Education Centre",
+      "status": "completed"
+    }
+  ],
+  "certifications": [
+    { "name": "Data Science",          "issuer": "Oracle",    "color": "#ef4444", "link": "https://catalog-education.oracle.com/ords/certview/sharebadge?id=A04A17CEE858F4A8CFD5CB45ABBC63AABDBA1CED20C1D2309DFD5432D6455385" },
+    { "name": "CyberSecurity",         "issuer": "IBM",       "color": "#3b82f6", "link": "https://www.credly.com/badges/cd49251b-f877-44ae-8363-c688a4d7fc0a/public_url" },
+    { "name": "Generative AI",         "issuer": "Google",    "color": "#4285F4", "link": "https://www.coursera.org/account/accomplishments/verify/4N6N6VEY9XY5" },
+    { "name": "Artificial Intelligence","issuer": "Amazon",   "color": "#FF9900", "link": "https://www.credly.com/badges/03de804d-b0b2-49a8-bd77-ca98772f8097" },
+    { "name": "Generative AI",         "issuer": "SoloLearn", "color": "#7c5cff", "link": "https://www.sololearn.com/en/certificates/CC-WCPSZ2TP" },
+    { "name": "Intro to LLMs",         "issuer": "SoloLearn", "color": "#00d4ff", "link": "https://www.sololearn.com/en/certificates/CC-WC1ZLCOY" },
+    { "name": "Machine Learning",      "issuer": "SoloLearn", "color": "#22c55e", "link": "https://www.sololearn.com/en/certificates/CC-CU61JZ8H" },
+    { "name": "Prompt Engineering",    "issuer": "SoloLearn", "color": "#f59e0b", "link": "https://www.sololearn.com/en/certificates/CC-VBGFKZIQ" },
+    { "name": "Python Basics",         "issuer": "SoloLearn", "color": "#FFD43B", "link": "https://www.sololearn.com/en/certificates/CC-WITL9IVS" },
+    { "name": "Python Intermediate",   "issuer": "SoloLearn", "color": "#FFD43B", "link": "https://www.sololearn.com/en/certificates/CC-9EMDNQJB" },
+    { "name": "HTML Programming",      "issuer": "SoloLearn", "color": "#f97316", "link": "https://www.sololearn.com/en/certificates/CC-LQSAGVIJ" },
+    { "name": "CSS Fundamentals",      "issuer": "SoloLearn", "color": "#60a5fa", "link": "https://www.sololearn.com/en/certificates/CC-3MQ5JO6Z" },
+    { "name": "Write with AI",         "issuer": "SoloLearn", "color": "#ec4899", "link": "https://www.sololearn.com/en/certificates/CC-FJ5GTNAM" }
+  ],
+  "profiles": [
+    { "name": "GitHub",       "icon": "fab fa-github",         "link": "https://github.com/prakhar9044-code",                     "color": "#ffffff" },
+    { "name": "LinkedIn",     "icon": "fab fa-linkedin",       "link": "https://www.linkedin.com/in/prakharai1212",               "color": "#0077b5" },
+    { "name": "HackerRank",   "icon": "fas fa-code",           "link": "https://www.hackerrank.com/profile/prakhar9044verma",      "color": "#00ea64" },
+    { "name": "LeetCode",     "icon": "fas fa-puzzle-piece",   "link": "https://leetcode.com/u/jxLXeIbuH1/",                      "color": "#ffa116" },
+    { "name": "HackerEarth",  "icon": "fas fa-terminal",       "link": "https://www.hackerearth.com/@prakhar9044-code/",           "color": "#2c3e8c" },
+    { "name": "StackOverflow","icon": "fab fa-stack-overflow", "link": "https://stackoverflow.com/users/31419366/prakhar-verma",   "color": "#f48024" },
+    { "name": "GeeksForGeeks","icon": "fas fa-book",           "link": "https://www.geeksforgeeks.org/user/prakhar9044verma/",     "color": "#2f8d46" },
+    { "name": "DataCamp",     "icon": "fas fa-graduation-cap", "link": "https://www.datacamp.com/portfolio/prakhar9044verma",      "color": "#03ef62" }
+  ]
+}

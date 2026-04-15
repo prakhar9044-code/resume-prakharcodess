@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Prakhar Verma · Virtual Dev Room</title>
+  <meta name="description" content="Prakhar Verma — Elite AI & Frontend Developer. 3D Virtual Developer Room Portfolio." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Three.js -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/controls/OrbitControls.js"></script> -->
+   <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
+    }
+  }
+</script>
+</head>
+
+<body>
+
+<!-- ─── LOADING SCREEN ──────────────────────────────────── -->
+<div id="loader">
+  <div class="loader-orbs"></div>
+  <div style="position:relative;z-index:10;text-align:center">
+    <div class="loader-logo">Prakhar<span style="opacity:0.6">.dev</span></div>
+    <div class="loader-sub">Virtual Developer Room — Loading 3D Experience</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-status">Initializing engine...</div>
+  </div>
+</div>
+
+<!-- ─── CANVAS ─────────────────────────────────────────── -->
+<canvas id="three-canvas"></canvas>
+
+<!-- ─── CURSOR ─────────────────────────────────────────── -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ─── TOAST ──────────────────────────────────────────── -->
+<div id="toast-wrap"></div>
+
+<!-- ─── HOVER TOOLTIP ──────────────────────────────────── -->
+<div id="tooltip">
+  <span class="tooltip-icon">✦</span>
+  <span id="tooltip-text">Interact</span>
+</div>
+
+<!-- ─── NAV ────────────────────────────────────────────── -->
+<nav id="nav">
+  <a href="#" class="nav-logo" onclick="returnHome();return false">
+    Prakhar<span style="opacity:0.5">.dev</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="#" class="nav-link" data-panel="about">
+      <i class="fas fa-user"></i> About
+    </a>
+    <a href="#" class="nav-link" data-panel="skills">
+      <i class="fas fa-code"></i> Skills
+    </a>
+    <a href="#" class="nav-link" data-panel="projects">
+      <i class="fas fa-folder"></i> Projects
+    </a>
+    <a href="#" class="nav-link" data-panel="contact">
+      <i class="fas fa-envelope"></i> Contact
+    </a>
+  </div>
+
+  <a href="https://github.com/prakhar9044-code" target="_blank" class="nav-cta">
+    <i class="fab fa-github"></i>&nbsp; GitHub
+  </a>
+</nav>
+
+<!-- ─── HINT BAR ────────────────────────────────────────── -->
+<div id="hint-bar">
+  <div class="hint-item"><span class="hint-icon">🖥️</span> Monitor → Projects</div>
+  <div class="hint-item"><span class="hint-icon">📚</span> Bookshelf → Skills</div>
+  <div class="hint-item"><span class="hint-icon">🖼️</span> Poster → About</div>
+  <div class="hint-item"><span class="hint-icon">📱</span> Phone → Contact</div>
+  <div class="hint-item"><span class="hint-icon">🖱️</span> Drag to Orbit</div>
+</div>
+
+<!-- ─── BACK BUTTON ─────────────────────────────────────── -->
+<button id="btn-back">
+  <i class="fas fa-arrow-left"></i> Back to Room
+</button>
+
+<!-- ─── PANEL BACKDROP ──────────────────────────────────── -->
+<div id="panel-backdrop" class="panel-backdrop"></div>
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║     ABOUT PANEL                      ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<div id="panel-about" class="panel">
+  <div class="panel-inner">
+    <div class="panel-header">
+      <div>
+        <div class="panel-tag">// section_01</div>
+        <h2 class="panel-title">Who I <span>Am</span></h2>
+      </div>
+      <button class="panel-close" title="Close"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div id="about-content">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║     SKILLS PANEL                     ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<div id="panel-skills" class="panel">
+  <div class="panel-inner">
+    <div class="panel-header">
+      <div>
+        <div class="panel-tag">// section_02</div>
+        <h2 class="panel-title">Tech <span>Arsenal</span></h2>
+      </div>
+      <button class="panel-close" title="Close"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div id="skills-content">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║     PROJECTS PANEL                   ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<div id="panel-projects" class="panel">
+  <div class="panel-inner">
+    <div class="panel-header">
+      <div>
+        <div class="panel-tag">// section_03</div>
+        <h2 class="panel-title">Featured <span>Projects</span></h2>
+      </div>
+      <button class="panel-close" title="Close"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div id="projects-content">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!-- ║     CONTACT PANEL                    ║ -->
+<!-- ╚══════════════════════════════════════╝ -->
+<div id="panel-contact" class="panel">
+  <div class="panel-inner">
+    <div class="panel-header">
+      <div>
+        <div class="panel-tag">// section_04</div>
+        <h2 class="panel-title">Let's <span>Connect</span></h2>
+      </div>
+      <button class="panel-close" title="Close"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div id="contact-content">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ─── SCRIPTS ──────────────────────────────────────────── -->
+<!-- <script src="script.js"></script> -->
+<!-- <script src="script.js"></script> -->
+<!-- <script type="module" src="script.js"></script> -->
+<script type="module" src="script.js"></script>
+<script>
+  // Helper exposed to HTML onclick
+  function returnHome() {
+    if (typeof room !== 'undefined') {
+      UI.closeAll();
+      room.returnToOverview();
+    }
+  }
+
+  // Cursor hover effect on interactive DOM elements
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest('a, button, .panel-close, .project-live, .cert-card, .about-link, .profile-chip, .contact-info-row')) {
+      document.body.classList.add('cursor-hover');
+    }
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest('a, button, .panel-close, .project-live, .cert-card, .about-link, .profile-chip, .contact-info-row')) {
+      document.body.classList.remove('cursor-hover');
+    }
+  });
+</script>
+
+</body>
+</html>
