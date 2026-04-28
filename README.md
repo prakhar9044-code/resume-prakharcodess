@@ -1,202 +1,72 @@
-🌐 Prakhar Verma — Personal Portfolio Website
+<div align="center">
 
-A modern, responsive, and minimal personal portfolio designed to showcase my skills, projects, achievements, social profiles, and contact information.
-This website is built with performance, clean UI, and professional branding in mind — representing my identity as an AI & Computer Science student.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=7C5CFF&height=250&section=header&text=Prakhar%20Verma&fontSize=60&fontColor=ffffff&animation=fadeIn&desc=Elite%20AI%20%26%20Frontend%20Developer&descAlignY=70&descAlign=50" width="100%" />
 
-🚀 Live Demo
+<img src="https://readme-typing-svg.herokuapp.com?font=Space+Grotesk&weight=700&size=22&pause=1000&color=00D4FF&center=true&vCenter=true&width=800&lines=Immersive+3D+Portfolio+Architecture;React+%E2%80%A2+Three.js+%E2%80%A2+GSAP+%E2%80%A2+Tailwind;Engineered+for+Performance+%26+Aesthetics;Bridging+Machine+Learning+%26+Frontend" alt="Typing SVG" />
 
-🔗 Portfolio URL: https://resume-prakharcodess.vercel.app/
+<br/>
 
-(Deployed on Vercel)
+<p align="center">
+  <a href="#-about-the-architecture">Architecture</a> •
+  <a href="#-core-features">Features</a> •
+  <a href="#%EF%B8%8F-tech-stack">Tech Stack</a> •
+  <a href="#-installation--setup">Setup</a> •
+  <a href="#-project-structure">Structure</a>
+</p>
 
-🧠 About the Website
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Three.js-050505?style=for-the-badge&logo=threedotjs&logoColor=white" alt="Three.js" />
+  <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" alt="GSAP" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />
+</p>
+</div>
 
-This portfolio highlights my work in:
+---
 
-Generative AI
+## 🌌 About the Architecture
 
-Large Language Models
+This repository contains the source code for a premium, high-performance personal portfolio. Engineered to bridge the gap between cutting-edge Artificial Intelligence capabilities and flawless frontend design, this application is built as a highly optimized Single Page Application (SPA).
 
-Machine Learning
+Instead of relying on standard DOM manipulation, the application leverages **WebGL via React Three Fiber** for an immersive background environment, perfectly synchronized with **GSAP ScrollTrigger** and **Lenis Smooth Scrolling** to create a cinematic, Awwwards-tier user experience.
 
-Software Development
+> **Status:** `Online & Ready` | **Focus:** `AI & Scalable Architecture`
 
-UI/UX Concepts
+---
 
-Web Engineering
+## ✨ Core Features
 
-It includes structured sections for:
-✔ About
-✔ Skills
-✔ Projects
-✔ Education
-✔ Certifications
-✔ Social Profiles
-✔ Contact Form
-✔ Feedback
-✔ Resume Download
+- **Immersive 3D Render Core:** A highly optimized, instanced WebGL particle system acting as an interactive backdrop, rendering at a strict 60fps.
+- **Cinematic Scroll Animations:** Complex, timeline-based DOM animations powered by `GSAP` and tied directly to the scroll delta via `ScrollTrigger`.
+- **Fluid Smooth Scrolling:** Native-feeling, friction-based smooth scrolling integrated via `@studio-freight/lenis`.
+- **Premium Glassmorphism:** Deep dark-mode aesthetics utilizing a custom AMOLED color palette (`#050505` bg, `#7C5CFF` & `#00D4FF` neon accents) mapped in Tailwind CSS.
+- **Data-Driven Modularity:** All portfolio content (Projects, Skills, Certifications) is completely decoupled from the UI layer into a centralized JSON/JS data structure for rapid updates.
 
-✨ Features
-🎨 Modern Animated Landing Page
+---
 
-Smooth gradient flow animation on my name
+## 🛠️ Tech Stack
 
-Minimal intro section with key highlights
+### Framework & UI
+* **[React 18](https://reactjs.org/)** - UI Library
+* **[Vite](https://vitejs.dev/)** - Next-generation frontend tooling
+* **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first styling framework
+* **[Lucide React](https://lucide.dev/)** - Beautiful, consistent icon set
 
-Professional headshot placement
+### 3D & Animation Engine
+* **[Three.js](https://threejs.org/)** - WebGL library
+* **[@react-three/fiber](https://docs.pmnd.rs/react-three-fiber)** - React renderer for Three.js
+* **[@react-three/drei](https://github.com/pmndrs/drei)** - Useful helpers for R3F
+* **[GSAP (GreenSock)](https://greensock.com/)** - Professional-grade animation engine
+* **[Lenis](https://lenis.studiofreight.com/)** - Smooth scroll API
 
-🧠 AI & Software Engineering Focus
+---
 
-Showcases my expertise in LLMs, ML, Prompt Engineering, and Python
+## 🚀 Installation & Setup
 
-🧩 Real Projects Section
+To run this environment locally, ensure you have `Node.js` (v16+) installed.
 
-The projects displayed on the website are fetched from my LinkedIn profile and include:
-
-My Portfolio Website
-
-Edu Rev (LPU) Prototype Website
-
-Both cards are interactive and show:
-
-Title
-
-Duration
-
-Description
-
-Tech Stack
-
-Live Demo Link
-
-🌍 Dedicated Social Profiles Panel
-
-Links to my professional presence:
-
-LinkedIn
-
-GitHub
-
-HackerRank
-
-HackerEarth
-
-LeetCode
-
-Figma
-
-StackOverflow
-
-GeeksForGeeks
-
-Oracle Learning Portal
-
-AWS Skill Builder
-
-DataCamp
-
-📝 Resume Download Button
-
-View Resume
-
-Download Resume
-(Using PDF stored inside the project file system)
-
-🔥 Smooth UI/UX Enhancements
-
-AOS scroll animations
-
-Glassmorphism cards
-
-Neon button glows
-
-Subtle hover transformations
-
-Responsive navigation
-
-🌓 Adaptive Dark & Light Themes
-
-One-tap theme switch
-
-Local storage remembers user preference
-
-💬 Built-in Mini Chat Assistant
-
-Helps users navigate portfolio
-
-Suggests project or contact sections
-
-🧠 Performance Optimized
-
-Lag-free motion
-
-Light animations
-
-Clean DOM
-
-No heavy loops
-
-🛠 Tech Stack
-Layer	Tools
-Structure	HTML5
-Styling	Modern CSS, Glassmorphism, Gradients
-Animations	CSS Animations, AOS Scroll
-Interaction	Vanilla JavaScript
-Deployment	Vercel
-
-📂 Project Structure
-root/
-│
-├── index.html
-├── PROFILE.png
-├── Professional B.Tech Resume LaTeX.pdf
-└── assets/ (optional for icons/image)
-
-🧑‍💻 Installation (Local Run)
-# Clone the repository
-git clone https://github.com/your-username/your-repo-name.git
-
-# Open
-Open index.html in your browser
-
-🌍 Deployment
-
-Hosted on Vercel
-You can redeploy using:
-
-vercel deploy
-
-📌 Future Enhancements (Planned)
-
-Add ML project demo videos
-
-Add backend portfolio API
-
-Showcase resume analyzer project
-
-Portfolio chatbot LLM upgrade
-
-🤝 Contributions
-
-This is a personal project.
-Suggestions and improvements are always welcome!
-
-Feel free to:
-
-Raise an issue
-
-Submit a pull request
-
-📬 Contact Me
-
-For opportunities, collaborations, or inquiries:
-
-Email: pra9044rma@rediffmail.com
-
-LinkedIn: https://www.linkedin.com/in/prakharai1212
-
-Portfolio Website: https://resume-prakharcodess.vercel.app/
-
-❤️ Credits
-Designed & Developed by Prakhar Verma
-AI & Computer Science Student
+**1. Clone the repository**
+```bash
+git clone [https://github.com/prakhar9044-code/premium-3d-portfolio.git](https://github.com/prakhar9044-code/premium-3d-portfolio.git)
+cd premium-3d-portfolio
