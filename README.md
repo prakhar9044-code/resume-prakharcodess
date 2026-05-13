@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=7C5CFF&height=250&section=header&text=Prakhar%20Verma&fontSize=60&fontColor=ffffff&animation=fadeIn&desc=Elite%20AI%20%26%20Frontend%20Developer&descAlignY=70&descAlign=50" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=7C5CFF&height=250&section=header&text=Prakhar%20Verma&fontSize=60&fontColor=ffffff&animation=fadeIn&desc=Elite%20AI%20%7C%20Frontend%20Developer&descAlignY=70&descAlign=50" width="100%" />
 
 <img src="https://readme-typing-svg.herokuapp.com?font=Space+Grotesk&weight=700&size=22&pause=1000&color=00D4FF&center=true&vCenter=true&width=800&lines=Immersive+3D+Portfolio+Architecture;React+%E2%80%A2+Three.js+%E2%80%A2+GSAP+%E2%80%A2+Tailwind;Engineered+for+Performance+%26+Aesthetics;Bridging+Machine+Learning+%26+Frontend" alt="Typing SVG" />
 
@@ -68,5 +68,6 @@ To run this environment locally, ensure you have `Node.js` (v16+) installed.
 
 **1. Clone the repository**
 ```bash
-git clone [https://github.com/prakhar9044-code/premium-3d-portfolio.git](https://github.com/prakhar9044-code/premium-3d-portfolio.git)
+git clone https://github.com/prakhar9044-code/premium-3d-portfolio.git
 cd premium-3d-portfolio
+```
